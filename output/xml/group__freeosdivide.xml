@@ -1,0 +1,1066 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="group__freeosdivide" kind="group">
+    <compoundname>freeosdivide</compoundname>
+    <title>freeosdivide contract</title>
+    <innerclass refid="structaccount" prot="private">account</innerclass>
+    <innerclass refid="structcurrency__stats" prot="private">currency_stats</innerclass>
+    <innerclass refid="structewstable" prot="private">ewstable</innerclass>
+    <innerclass refid="structstacktbl" prot="private">stacktbl</innerclass>
+    <innerclass refid="structadeposit" prot="private">adeposit</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="group__freeosdivide_1ga6071d0a804c78f3a0654aa52e064ee2f" prot="private" static="no">
+        <type>eosio::multi_index&lt;&quot;messages&quot;_n, status_messages &gt;</type>
+        <definition>using messages_table =  eosio::multi_index&lt;&quot;messages&quot;_n, status_messages&gt;</definition>
+        <argsstring></argsstring>
+        <name>messages_table</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="231" column="3" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__freeosdivide_1gaabde34855cc117ca5719112bcb2ef357" prot="private" static="no">
+        <type>eosio::multi_index&lt;&quot;proposals&quot;_n, proposal_struct &gt;</type>
+        <definition>typedef eosio::multi_index&lt;&quot;proposals&quot;_n, proposal_struct&gt; proposal_table</definition>
+        <argsstring></argsstring>
+        <name>proposal_table</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="245" column="30" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="244" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__freeosdivide_1ga58e4346da9d784b448f34635da293cc0" prot="private" static="no">
+        <type>eosio::multi_index&lt;&quot;registers&quot;_n, register_struct, indexed_by&lt;&quot;byacct&quot;_n, const_mem_fun&lt; register_struct, uint64_t, &amp;register_struct::get_secondary_1 &gt; &gt;&gt;</type>
+        <definition>using register_table =  eosio::multi_index&lt;&quot;registers&quot;_n, register_struct, indexed_by&lt;&quot;byacct&quot;_n, const_mem_fun&lt;register_struct, uint64_t, &amp;register_struct::get_secondary_1&gt; &gt;&gt;</definition>
+        <argsstring></argsstring>
+        <name>register_table</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="261" column="3" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="262" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__freeosdivide_1ga78ca69b28fcaf5bab3e99de385ac1b1f" prot="private" static="no">
+        <type>eosio::multi_index&lt;&quot;whitelist&quot;_n, whitelist_struct, indexed_by&lt;&quot;byidno&quot;_n, const_mem_fun&lt; whitelist_struct, uint64_t, &amp;whitelist_struct::get_secondary_1 &gt; &gt;&gt;</type>
+        <definition>using whitelist_index =  eosio::multi_index&lt;&quot;whitelist&quot;_n, whitelist_struct, indexed_by&lt;&quot;byidno&quot;_n, const_mem_fun&lt;whitelist_struct, uint64_t, &amp;whitelist_struct::get_secondary_1&gt; &gt;&gt;</definition>
+        <argsstring></argsstring>
+        <name>whitelist_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="271" column="3" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="272" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__freeosdivide_1gabf62229d9efabcf6970fbf1df2db973e" prot="private" static="no">
+        <type>eosio::multi_index&lt;&quot;totals&quot;_n, total_struct &gt;</type>
+        <definition>using total_index =  eosio::multi_index&lt;&quot;totals&quot;_n, total_struct&gt;</definition>
+        <argsstring></argsstring>
+        <name>total_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="279" column="3" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="279" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__freeosdivide_1ga7b6f286b5f150ddd8a3e5d33e55baa70" prot="private" static="no">
+        <type>eosio::multi_index&lt;&quot;dryruns&quot;_n, dryrun_struct &gt;</type>
+        <definition>using dryrun_data =  eosio::multi_index&lt;&quot;dryruns&quot;_n, dryrun_struct&gt;</definition>
+        <argsstring></argsstring>
+        <name>dryrun_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="287" column="3" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="287" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__freeosdivide_1gae943dead3e20f23f9362634298c8ef6a" prot="private" static="no">
+        <type>eosio::multi_index&lt; &quot;accounts&quot;_n, account &gt;</type>
+        <definition>typedef eosio::multi_index&lt; &quot;accounts&quot;_n, account &gt; accounts</definition>
+        <argsstring></argsstring>
+        <name>accounts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="302" column="30" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="302" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__freeosdivide_1ga1e6b5f225ad9d0c53b369b0f2d4bbc49" prot="private" static="no">
+        <type>eosio::multi_index&lt; &quot;stat&quot;_n, currency_stats &gt;</type>
+        <definition>typedef eosio::multi_index&lt; &quot;stat&quot;_n, currency_stats &gt; stats</definition>
+        <argsstring></argsstring>
+        <name>stats</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="303" column="30" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="303" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__freeosdivide_1ga59007f4afeb4040a0c56e56a4ab1aaff" prot="private" static="no">
+        <type>eosio::multi_index&lt; &quot;ewstables&quot;_n, ewstable &gt;</type>
+        <definition>typedef eosio::multi_index&lt; &quot;ewstables&quot;_n, ewstable &gt; ewsanalytics</definition>
+        <argsstring></argsstring>
+        <name>ewsanalytics</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="311" column="30" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="311" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__freeosdivide_1gade61a937f4aa45db0c159718934e5149" prot="private" static="no">
+        <type>eosio::multi_index&lt;&quot;stacktbls&quot;_n, stacktbl &gt;</type>
+        <definition>using stacktype =  eosio::multi_index&lt;&quot;stacktbls&quot;_n, stacktbl &gt;</definition>
+        <argsstring></argsstring>
+        <name>stacktype</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="318" column="3" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="318" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="group__freeosdivide_1gaaf0de9a26fa3ccaf89710d123079e088" prot="private" static="no">
+        <type>eosio::multi_index&lt;&quot;deposits&quot;_n, adeposit &gt;</type>
+        <definition>using adeposit_index =  eosio::multi_index&lt;&quot;deposits&quot;_n, adeposit&gt;</definition>
+        <argsstring></argsstring>
+        <name>adeposit_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="328" column="5" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="328" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="group__freeosdivide_1ga15f26a14e60f878480370d1369b33975" prot="public" static="no" mutable="no">
+        <type>CONTRACT</type>
+        <definition>CONTRACT freeosdivide</definition>
+        <argsstring></argsstring>
+        <name>freeosdivide</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="23" column="10" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga6d99e1a9fa8e5d0bae2a8433a92fe2c5" prot="private" static="no" mutable="no">
+        <type>TABLE</type>
+        <definition>TABLE status_messages</definition>
+        <argsstring></argsstring>
+        <name>status_messages</name>
+        <initializer>{                 
+                                          
+    uint64_t key</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="225" column="9" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga0e3083f63326aec43bf8ee88bedfa9f5" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t errorno</definition>
+        <argsstring></argsstring>
+        <name>errorno</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="228" column="14" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="228" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga89fa712506f9bccf58a99b82c7730b6c" prot="private" static="no" mutable="no">
+        <type>TABLE</type>
+        <definition>TABLE proposal_struct</definition>
+        <argsstring></argsstring>
+        <name>proposal_struct</name>
+        <initializer>{                     
+      uint64_t key</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="233" column="9" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="233" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga6f3659b8948089e75913001427321cff" prot="private" static="no" mutable="no">
+        <type>name</type>
+        <definition>name eosaccount</definition>
+        <argsstring></argsstring>
+        <name>eosaccount</name>
+        <briefdescription>
+<para>freeos account used to receive dividends and for identification </para>
+        </briefdescription>
+        <detaileddescription>
+<para>freeos account used to receive dividends and for identification (as a secondary key) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="235" column="12" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="235" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga943a308f745ea7ddc590893803538b3b" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t roi_target_cap</definition>
+        <argsstring></argsstring>
+        <name>roi_target_cap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="236" column="15" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="236" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga53e2f1781c80c5f90fad166788ec0826" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double period_percentage</definition>
+        <argsstring></argsstring>
+        <name>period_percentage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="237" column="14" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga18a0f1e6c3d21c252b14ea6ae162e2ff" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool locked</definition>
+        <argsstring></argsstring>
+        <name>locked</name>
+        <briefdescription>
+<para>lock dividends for selected new members. Note: When unlock cannot be locked again. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>lock dividends for selected new members. Note: When unlock should be not lock again. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="238" column="12" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="238" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1gaae699db4cd32e186d2595aa9c6722ff3" prot="private" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t expires_at</definition>
+        <argsstring></argsstring>
+        <name>expires_at</name>
+        <briefdescription>
+<para>expiry for the proposal only (must be voted before that time) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="239" column="16" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="239" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga8fdee1a34c611af3b80c2f2ec2261937" prot="private" static="no" mutable="no">
+        <type>asset</type>
+        <definition>asset threshold</definition>
+        <argsstring></argsstring>
+        <name>threshold</name>
+        <initializer>= asset(0,symbol(&quot;FREEOS&quot;,4) )</initializer>
+        <briefdescription>
+<para>max total divident (2) for horizontal cap or max weekly dividend for vertical (3) cap </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="240" column="13" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="240" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga2ee36626efc6412f2f4f61e0ab3c70ab" prot="private" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t rates_left</definition>
+        <argsstring></argsstring>
+        <name>rates_left</name>
+        <briefdescription>
+<para>count down payments left in iteration cap (I) only <linebreak/>
+ </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="241" column="16" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="241" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga00344991a2d6572fb92c1eb08eccf373" prot="private" static="no" mutable="no">
+        <type>asset</type>
+        <definition>asset accrued</definition>
+        <argsstring></argsstring>
+        <name>accrued</name>
+        <initializer>= asset(0,symbol(&quot;FREEOS&quot;,4) )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="242" column="13" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="242" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga4ff3902f894baa98a548a9970ceb3eb0" prot="private" static="no" mutable="no">
+        <type>TABLE</type>
+        <definition>TABLE register_struct</definition>
+        <argsstring></argsstring>
+        <name>register_struct</name>
+        <initializer>{                   
+      uint64_t nft_id</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="247" column="9" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="247" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1gad548e0ddf7d80fa40b8585d2af36ee2e" prot="private" static="no" mutable="no">
+        <type>time_point_sec</type>
+        <definition>time_point_sec mint_date</definition>
+        <argsstring></argsstring>
+        <name>mint_date</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="253" column="22" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="253" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga0242ba99ec91574f02749fcf93252b31" prot="private" static="no" mutable="no">
+        <type>TABLE</type>
+        <definition>TABLE whitelist_struct</definition>
+        <argsstring></argsstring>
+        <name>whitelist_struct</name>
+        <initializer>{                 
+      uint64_t idno</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="264" column="9" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="264" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga1837d4669dd7243486e15efe6519941d" prot="private" static="no" mutable="no">
+        <type>name</type>
+        <definition>name user</definition>
+        <argsstring></argsstring>
+        <name>user</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="266" column="16" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="266" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1gabe1fbcd2f5d24b359c77f14d464092ec" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t vote</definition>
+        <argsstring></argsstring>
+        <name>vote</name>
+        <briefdescription>
+<para>0 -n/a 1 - no 2 - yes / - different than zero if already voted </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="267" column="16" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="267" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga1bdbb92760fe0073f142a98d6c98028d" prot="private" static="no" mutable="no">
+        <type>TABLE</type>
+        <definition>TABLE total_struct</definition>
+        <argsstring></argsstring>
+        <name>total_struct</name>
+        <initializer>{
+      name     user</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="274" column="9" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="274" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga1d081365f8bdcbf20807d7a615052906" prot="private" static="no" mutable="no">
+        <type>asset</type>
+        <definition>asset to_receive</definition>
+        <argsstring></argsstring>
+        <name>to_receive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="276" column="16" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="276" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1gaa5b9e65624449455952db1bfe1e0ca2e" prot="private" static="no" mutable="no">
+        <type>TABLE</type>
+        <definition>TABLE dryrun_struct</definition>
+        <argsstring></argsstring>
+        <name>dryrun_struct</name>
+        <initializer>{
+    name user</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="282" column="9" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="282" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="group__freeosdivide_1ga41de8c3b3e6a186fe51d66099c70d205" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double perctotal</definition>
+        <argsstring></argsstring>
+        <name>perctotal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="284" column="12" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="284" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group__freeosdivide_1ga5dcc995e2a406f8919e65508c54d23e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::allowance</definition>
+        <argsstring>(uint8_t code, name vipname)</argsstring>
+        <name>allowance</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type>name</type>
+          <declname>vipname</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>allowance action.</para>
+<para>Creates VIP table defining proposer and voters.</para>
+<para><simplesect kind="pre"><para>required contract permission </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="37" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="6" bodyend="27" declfile="D:/doxygen/source/freeosdivide.hpp" declline="37" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga4e1052ec54317a2012b5ea975dd20f45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::singleplay</definition>
+        <argsstring>(uint64_t periodpoint, asset profit)</argsstring>
+        <name>singleplay</name>
+        <param>
+          <type>uint64_t</type>
+          <declname>periodpoint</declname>
+        </param>
+        <param>
+          <type>asset</type>
+          <declname>profit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="43" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="364" bodyend="370" declfile="D:/doxygen/source/freeosdivide.hpp" declline="43" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga4d4856cd2f28a5b62983ae760ef1f342" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::dryrun</definition>
+        <argsstring>()</argsstring>
+        <name>dryrun</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>dryrun action.</para>
+<para>This is analytics software. It counts estimated summary percentage of dividends to be paid This is counted on a basis of all active at this moment NFT&apos;s. NFT&apos;s which have already all rates paid (cap=1) or NFT&apos;s completely paid due to overcoming total accrued threshold value (cap=2) are also not counted. Cap=3 founders NFT&apos;s which are temporarily locked are counted as soon it will be paid again. <linebreak/>
+ Additional information which NFT&apos;s are already paid will be given on the NFT&apos;s list displayed by the front-end. analytics table - displays cummulative percentage of active NFTs on a basis of cap category summary1 table - displays cumulative percentage of active NFTs on a basis of each user NFTs owner. <linebreak/>
+</para>
+<para><simplesect kind="pre"><para>required any account listed on whitelist. <linebreak/>
+ </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="61" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="209" bodyend="358" declfile="D:/doxygen/source/freeosdivide.hpp" declline="61" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1gac37c75eefb19fd0f9c855c7f9166b339" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::proposalnew</definition>
+        <argsstring>(const name proposer, const name eosaccount, const uint8_t roi_target_cap, const double period_percentage, const asset threshold, const uint32_t rates_left, const bool locked)</argsstring>
+        <name>proposalnew</name>
+        <param>
+          <type>const name</type>
+          <declname>proposer</declname>
+        </param>
+        <param>
+          <type>const name</type>
+          <declname>eosaccount</declname>
+          <briefdescription><para>freeos account used to receive dividends and for identification </para>
+</briefdescription>
+        </param>
+        <param>
+          <type>const uint8_t</type>
+          <declname>roi_target_cap</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>period_percentage</declname>
+        </param>
+        <param>
+          <type>const asset</type>
+          <declname>threshold</declname>
+        </param>
+        <param>
+          <type>const uint32_t</type>
+          <declname>rates_left</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>locked</declname>
+          <briefdescription><para>lock dividends for selected new founders. Note: When unlock cannot be locked again. </para>
+</briefdescription>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>proposalnew action.</para>
+<para>Creates new proposal. The proposal (if accepted) becomes a base to mint new NFT. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>proposer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- The account name of a person eligible to create new proposal. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>eosaccount</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- The account name of future owner of new proposed NFT (investor or founder). <linebreak/>
+ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>roi_target_cap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- Type of Dividend Policy (roi): 1- 2- 3- </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>period_percentage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- Pre-agreed percentage of weekly dividend which will be transfered to eosaccount. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- Upper limit for dividend payment (if roi=1 n/a, if roi=2 cummulative limit, if roi=3 weekly limit). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rates_left</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- Number of weekly dividend payment left to pay (only for roi=1). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>locked</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- Lock of payments (only for roi=3).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>requires proposer permission </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="79" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="31" bodyend="99" declfile="D:/doxygen/source/freeosdivide.hpp" declline="79" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1gaac7fde7d05638b618f6c6fa4c4e389ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::proposalvote</definition>
+        <argsstring>(const name voter, const uint8_t vote)</argsstring>
+        <name>proposalvote</name>
+        <param>
+          <type>const name</type>
+          <declname>voter</declname>
+        </param>
+        <param>
+          <type>const uint8_t</type>
+          <declname>vote</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>proposalvote action.</para>
+<para>New proposal acceptance review by voting. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>voter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- The voter name. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vote</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- The vote: 0 - ignored/no vote, 1 - no, 2 - yes/accept.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>requires voter permission </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="94" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="103" bodyend="196" declfile="D:/doxygen/source/freeosdivide.hpp" declline="94" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga3469572d9787f108dd5b3187496d8d43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::propreset</definition>
+        <argsstring>(name proposer)</argsstring>
+        <name>propreset</name>
+        <param>
+          <type>name</type>
+          <declname>proposer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>propreset action.</para>
+<para>Prematurely erase proposal.</para>
+<para><simplesect kind="pre"><para>requires proposer permission. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="104" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="743" bodyend="764" declfile="D:/doxygen/source/freeosdivide.hpp" declline="104" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga479b24c700f59477973330d36511da02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::removeallow</definition>
+        <argsstring>()</argsstring>
+        <name>removeallow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>removeallow action</para>
+<para>Removes the white_list table.</para>
+<para><simplesect kind="pre"><para>requires contract permission </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="114" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="784" bodyend="792" declfile="D:/doxygen/source/freeosdivide.hpp" declline="114" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1gac903fc4093144d338a7232e337defdbb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::regchown</definition>
+        <argsstring>(name userfrom, name userto, uint64_t nft_id)</argsstring>
+        <name>regchown</name>
+        <param>
+          <type>name</type>
+          <declname>userfrom</declname>
+        </param>
+        <param>
+          <type>name</type>
+          <declname>userto</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>nft_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>regchown action.</para>
+<para>Changes NFT ownership (NFT transfer).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>userfrom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- original NFT owner </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>userto</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- receiver of NFT </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nft_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- the NFT key</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="pre"><para>requires userfrom permission. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="128" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="769" bodyend="780" declfile="D:/doxygen/source/freeosdivide.hpp" declline="128" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga80e090ca1b155767e06311aff10c2717" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::version</definition>
+        <argsstring>()</argsstring>
+        <name>version</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>version action.</para>
+<para>answers by the software version </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="136" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="796" bodyend="798" declfile="D:/doxygen/source/freeosdivide.hpp" declline="136" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1gab1ba6fe0ec96a8dd3d4b26ff96f05757" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::replay</definition>
+        <argsstring>()</argsstring>
+        <name>replay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>replay action</para>
+<para>ignite processing of a dividend sharing in relation to the current period. also is able to process past omitted dividends in reverse order. Prevent that threshold will cut exact value of dividend.</para>
+<para><simplesect kind="pre"><para>do not need any </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="148" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="607" bodyend="630" declfile="D:/doxygen/source/freeosdivide.hpp" declline="148" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga376f256a9e25e140e3df0553938efac6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>clear action TEST</para>
+<para>TEST ONLY: zeroes the &apos;summary&apos; table without erasing it (no RAM released)</para>
+<para><simplesect kind="pre"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="159" column="9" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="680" bodyend="690" declfile="D:/doxygen/source/freeosdivide.hpp" declline="159" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1gac0a0055e46375908b1f81ee2f67b594d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::clear1</definition>
+        <argsstring>()</argsstring>
+        <name>clear1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>clear1 action TEST</para>
+<para>TEST ONLY: Completely erase &apos;summary&apos; table. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="169" column="9" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="694" bodyend="702" declfile="D:/doxygen/source/freeosdivide.hpp" declline="169" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga8b4e76fe7bce1ae74a945a493de0195a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::setdeposit</definition>
+        <argsstring>(uint64_t iter, asset accr)</argsstring>
+        <name>setdeposit</name>
+        <param>
+          <type>uint64_t</type>
+          <declname>iter</declname>
+        </param>
+        <param>
+          <type>asset</type>
+          <declname>accr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>setdeposit action TEST</para>
+<para>TEST ONLY: creates fake &apos;deposit&apos; table. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="179" column="9" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="634" bodyend="642" declfile="D:/doxygen/source/freeosdivide.hpp" declline="179" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga49287d6b86872ab995d097a2851e95f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::votesreset11</definition>
+        <argsstring>()</argsstring>
+        <name>votesreset11</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>votesreset11 action TEST</para>
+<para>TEST ONLY: Clean up the voting results (last column in &apos;whitelist&apos; table). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="188" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="706" bodyend="716" declfile="D:/doxygen/source/freeosdivide.hpp" declline="188" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1gade5508153c860afcf6a1200f5500a638" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::removedepos</definition>
+        <argsstring>(uint64_t iteration)</argsstring>
+        <name>removedepos</name>
+        <param>
+          <type>uint64_t</type>
+          <declname>iteration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="192" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="669" bodyend="676" declfile="D:/doxygen/source/freeosdivide.hpp" declline="192" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1gaea9256086ce4c51ca16bf793f57a103e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::zerofortest</definition>
+        <argsstring>()</argsstring>
+        <name>zerofortest</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="201" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="646" bodyend="654" declfile="D:/doxygen/source/freeosdivide.hpp" declline="201" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga696d1b2c17278df624dbeac31115ca6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::notify_front</definition>
+        <argsstring>(uint8_t number)</argsstring>
+        <name>notify_front</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>number</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="204" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="721" bodyend="729" declfile="D:/doxygen/source/freeosdivide.hpp" declline="204" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga3f54a85bd52bfd68c190e341de306bba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::clearfront</definition>
+        <argsstring>()</argsstring>
+        <name>clearfront</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="205" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="732" bodyend="738" declfile="D:/doxygen/source/freeosdivide.hpp" declline="205" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga067b4819b4bbafc9ac3e666a80186cb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::removeonenft</definition>
+        <argsstring>(uint64_t nft_id)</argsstring>
+        <name>removeonenft</name>
+        <param>
+          <type>uint64_t</type>
+          <declname>nft_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="209" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="658" bodyend="665" declfile="D:/doxygen/source/freeosdivide.hpp" declline="209" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga3e23c9fd06a0854167980e4e6fb4a83a" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>time_point_sec</type>
+        <definition>static time_point_sec current_time_point_sec</definition>
+        <argsstring>()</argsstring>
+        <name>current_time_point_sec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="213" column="34" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="213" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga1d6f7cc76d564d41a635075b12ea6d40" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t now</definition>
+        <argsstring>()</argsstring>
+        <name>now</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="217" column="14" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="217" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga7553043f60482ff7d15275faeb63e7cd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void freeosdivide::dividendhand</definition>
+        <argsstring>(uint64_t periodpoint, asset profit)</argsstring>
+        <name>dividendhand</name>
+        <param>
+          <type>uint64_t</type>
+          <declname>periodpoint</declname>
+        </param>
+        <param>
+          <type>asset</type>
+          <declname>profit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>to_receive.amount = ((profit.amount/100.00)*dao_percent); //In fact this is our leftover for DAO account now in FREEOS.</para>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="221" column="10" bodyfile="D:/doxygen/source/freeosdivide.cpp" bodystart="373" bodyend="601" declfile="D:/doxygen/source/freeosdivide.hpp" declline="221" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga4997feebecdd525de6e494639d13a7b4" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>auto</type>
+        <definition>uint64_t primary_key</definition>
+        <argsstring>() const</argsstring>
+        <name>primary_key</name>
+        <briefdescription>
+<para>This table should be filled up only by a real multisig. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="229" column="10" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="229" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga5028589707ea6a7d8462f7b339877ae4" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t get_secondary_1</definition>
+        <argsstring>() const</argsstring>
+        <name>get_secondary_1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="259" column="16" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="259" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1gac6ec480bd537eee109523df3bb72c143" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void set_deposit</definition>
+        <argsstring>(uint64_t iteration, asset accrued)</argsstring>
+        <name>set_deposit</name>
+        <param>
+          <type>uint64_t</type>
+          <declname>iteration</declname>
+        </param>
+        <param>
+          <type>asset</type>
+          <declname>accrued</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="332" column="6" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="332" bodyend="361"/>
+      </memberdef>
+      <memberdef kind="function" id="group__freeosdivide_1ga7f7a7ff4781ec2beabbec9a5288e2452" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t readiter</definition>
+        <argsstring>()</argsstring>
+        <name>readiter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="364" column="10" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="364" bodyend="368"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>freeosdivide contract</para>
+<para>freeosdivide contract read profit cumulated on contract account coming from different sources. T h e a c t i o n s a r e l i s t e d i n a l p h a b e t i c a l o r d e r. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

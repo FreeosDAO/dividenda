@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structstacktbl" kind="struct" language="C++" prot="private">
+    <compoundname>stacktbl</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structstacktbl_1afc0f5402f8c0417a859a546d44c858c8" prot="public" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t stacktbl::current</definition>
+        <argsstring></argsstring>
+        <name>current</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="315" column="14" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="315" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structstacktbl_1ad080f95c31a641af04e2f6b80e0834d6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t stacktbl::primary_key</definition>
+        <argsstring>() const</argsstring>
+        <name>primary_key</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/doxygen/source/freeosdivide.hpp" line="316" column="14" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="316" bodyend="316"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/doxygen/source/freeosdivide.hpp" line="313" column="3" bodyfile="D:/doxygen/source/freeosdivide.hpp" bodystart="313" bodyend="317"/>
+    <listofallmembers>
+      <member refid="structstacktbl_1afc0f5402f8c0417a859a546d44c858c8" prot="public" virt="non-virtual"><scope>stacktbl</scope><name>current</name></member>
+      <member refid="structstacktbl_1ad080f95c31a641af04e2f6b80e0834d6" prot="public" virt="non-virtual"><scope>stacktbl</scope><name>primary_key</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
