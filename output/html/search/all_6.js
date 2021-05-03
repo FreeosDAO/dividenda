@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['regchown_17',['regchown',['../group__freeosdivide.html#gac903fc4093144d338a7232e337defdbb',1,'freeosdivide.cpp']]],
-  ['removeallow_18',['removeallow',['../group__freeosdivide.html#ga479b24c700f59477973330d36511da02',1,'freeosdivide.cpp']]],
-  ['removedepos_19',['removedepos',['../group__freeosdivide.html#gade5508153c860afcf6a1200f5500a638',1,'freeosdivide.cpp']]],
-  ['removeonenft_20',['removeonenft',['../group__freeosdivide.html#ga067b4819b4bbafc9ac3e666a80186cb0',1,'freeosdivide.cpp']]],
-  ['replay_21',['replay',['../group__freeosdivide.html#gab1ba6fe0ec96a8dd3d4b26ff96f05757',1,'freeosdivide.cpp']]]
+  ['unlocknft_16',['unlocknft',['../group__dividenda.html#ga8a6e8b4dbf65e7d1c5421d8d3b67dcf2',1,'dividenda.cpp']]],
+  ['upsert_17',['upsert',['../group__dividenda.html#gae73037b60d607b092243c1c540cca298',1,'dividenda.cpp']]]
 ];

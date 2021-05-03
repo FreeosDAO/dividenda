@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['allowance_0',['allowance',['../group__freeosdivide.html#ga5dcc995e2a406f8919e65508c54d23e8',1,'freeosdivide.cpp']]]
+  ['clear_0',['clear',['../group__dividenda.html#ga8b48eba57ecf5c809de3cd698e612651',1,'dividenda.cpp']]],
+  ['clear1_1',['clear1',['../group__dividenda.html#ga425e00ebe8ac8f93b113c8c709a69044',1,'dividenda.cpp']]],
+  ['clearfront_2',['clearfront',['../group__dividenda.html#gaf93fbfd3f7c04f236c6636d4fb14c442',1,'dividenda.cpp']]]
 ];

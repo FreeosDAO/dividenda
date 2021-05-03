@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['notify_5ffront_13',['notify_front',['../group__freeosdivide.html#ga696d1b2c17278df624dbeac31115ca6c',1,'freeosdivide.cpp']]]
+  ['query_10',['query',['../group__dividenda.html#ga66be7bbc6cc74c5d567dabb390f90868',1,'dividenda.cpp']]]
 ];

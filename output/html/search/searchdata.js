@@ -1,27 +1,24 @@
 var indexSectionsWithContent =
 {
-  0: "acdfnprstvz",
-  1: "df",
-  2: "acdnprsvz",
-  3: "dftv",
-  4: "f"
+  0: "cdnpqruv",
+  1: "cdnpqruv",
+  2: "r",
+  3: "d"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "files",
-  2: "functions",
-  3: "variables",
-  4: "groups"
+  1: "functions",
+  2: "enums",
+  3: "groups"
 };
 
 var indexSectionLabels =
 {
   0: "All",
-  1: "Files",
-  2: "Functions",
-  3: "Variables",
-  4: "Modules"
+  1: "Functions",
+  2: "Enumerations",
+  3: "Modules"
 };
 

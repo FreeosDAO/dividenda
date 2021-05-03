@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['notify_5ffront_37',['notify_front',['../group__freeosdivide.html#ga696d1b2c17278df624dbeac31115ca6c',1,'freeosdivide.cpp']]]
+  ['proposalnew_26',['proposalnew',['../group__dividenda.html#ga3b3f3058b4355ec24f1f252632e9dbff',1,'dividenda.cpp']]],
+  ['proposalvote_27',['proposalvote',['../group__dividenda.html#ga866a56d761bef2d9e3ceef36312d206e',1,'dividenda.cpp']]],
+  ['propreset_28',['propreset',['../group__dividenda.html#ga368033d3f85105e7f320bbcb6ae7cdd9',1,'dividenda.cpp']]]
 ];

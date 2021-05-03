@@ -3,21 +3,21 @@
 server_name=$(hostname)
 
 function optionsdiv(){
-eosio-cpp -abigen dividenda.cpp -o=depl_optionsdiv/dividenda.wasm -I=incl_optionsdiv
+eosio-cpp -abigen dividenda.cpp -o=depl_optionsdiv/dividenda/dividenda.wasm -I=incl_optionsdiv
 }
 
 function optionsdiva(){
-eosio-cpp -abigen dividenda.cpp -o=depl_optionsdiva/dividenda.wasm -I=incl_optionsdiva
+eosio-cpp -abigen dividenda.cpp -o=depl_optionsdiva/dividenda/dividenda.wasm -I=incl_optionsdiva
 }
 
 function freeosdiv(){
-eosio-cpp -abigen dividenda.cpp -o=depl_freeosdiv/dividenda.wasm -I=incl_freeosdiv
+eosio-cpp -abigen dividenda.cpp -o=depl_freeosdiv/dividenda/dividenda.wasm -I=incl_freeosdiv
 }
 
 function all_codes(){
-eosio-cpp -abigen dividenda.cpp -o=depl_optionsdiv/dividenda.wasm -I=incl_optionsdiv
-eosio-cpp -abigen dividenda.cpp -o=depl_optionsdiva/dividenda.wasm -I=incl_optionsdiva
-eosio-cpp -abigen dividenda.cpp -o=depl_freeosdiv/dividenda.wasm -I=incl_freeosdiv
+eosio-cpp -abigen dividenda.cpp -o=depl_optionsdiv/dividenda/dividenda.wasm -I=incl_optionsdiv
+eosio-cpp -abigen dividenda.cpp -o=depl_optionsdiva/dividenda/dividenda.wasm -I=incl_optionsdiva
+eosio-cpp -abigen dividenda.cpp -o=depl_freeosdiv/dividenda/dividenda.wasm -I=incl_freeosdiv
 }
 
 function deploy_odiv(){

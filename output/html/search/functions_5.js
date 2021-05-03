@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['regchown_41',['regchown',['../group__freeosdivide.html#gac903fc4093144d338a7232e337defdbb',1,'freeosdivide.cpp']]],
-  ['removeallow_42',['removeallow',['../group__freeosdivide.html#ga479b24c700f59477973330d36511da02',1,'freeosdivide.cpp']]],
-  ['removedepos_43',['removedepos',['../group__freeosdivide.html#gade5508153c860afcf6a1200f5500a638',1,'freeosdivide.cpp']]],
-  ['removeonenft_44',['removeonenft',['../group__freeosdivide.html#ga067b4819b4bbafc9ac3e666a80186cb0',1,'freeosdivide.cpp']]],
-  ['replay_45',['replay',['../group__freeosdivide.html#gab1ba6fe0ec96a8dd3d4b26ff96f05757',1,'freeosdivide.cpp']]]
+  ['regchown_30',['regchown',['../group__dividenda.html#gabae1a299143796946bf268b68f44388e',1,'dividenda.cpp']]],
+  ['removeallow_31',['removeallow',['../group__dividenda.html#gae55731315d7d7fd1df1d052761122491',1,'dividenda.cpp']]],
+  ['removeonenft_32',['removeonenft',['../group__dividenda.html#ga7fe947344cf4e1d9f9950dcde83dd18a',1,'dividenda.cpp']]],
+  ['replay_33',['replay',['../group__dividenda.html#gadedd41689e8a0ba36e76ea4d190fb3ff',1,'dividenda.cpp']]]
 ];

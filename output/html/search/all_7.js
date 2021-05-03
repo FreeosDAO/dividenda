@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['setdeposit_22',['setdeposit',['../group__freeosdivide.html#ga8b4e76fe7bce1ae74a945a493de0195a',1,'freeosdivide.cpp']]],
-  ['singleplay_23',['singleplay',['../group__freeosdivide.html#ga4e1052ec54317a2012b5ea975dd20f45',1,'freeosdivide.cpp']]]
+  ['version_18',['version',['../group__dividenda.html#gaadd58a2bd505eba3564c7483be1a6140',1,'dividenda.hpp']]],
+  ['votesreset11_19',['votesreset11',['../group__dividenda.html#ga235fc8d23e4abd355fff6773e9fc21a6',1,'dividenda.cpp']]]
 ];
