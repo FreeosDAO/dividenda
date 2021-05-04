@@ -71,6 +71,32 @@
             ]
         },
         {
+            "name": "iteration",
+            "base": "",
+            "fields": [
+                {
+                    "name": "iteration_number",
+                    "type": "uint32"
+                },
+                {
+                    "name": "start",
+                    "type": "time_point"
+                },
+                {
+                    "name": "end",
+                    "type": "time_point"
+                },
+                {
+                    "name": "claim_amount",
+                    "type": "uint16"
+                },
+                {
+                    "name": "tokens_required",
+                    "type": "uint16"
+                }
+            ]
+        },
+        {
             "name": "nft_struct",
             "base": "",
             "fields": [
@@ -255,11 +281,6 @@
             ]
         },
         {
-            "name": "removeallow",
-            "base": "",
-            "fields": []
-        },
-        {
             "name": "removeonenft",
             "base": "",
             "fields": [
@@ -268,6 +289,11 @@
                     "type": "uint64"
                 }
             ]
+        },
+        {
+            "name": "removewhite",
+            "base": "",
+            "fields": []
         },
         {
             "name": "status_messages",
@@ -388,13 +414,13 @@
             "ricardian_contract": "**PARAMETERS:**\n\n* __owner__ current NFT owner\n* __new_owner__ new NFT owner\n* __nftid__ NFT_id must be received from the front-end\n\n**INTENT:** The intent of regchown is to allow changes in NFT ownership (e.g. only by inheritance or gift).\n\n**TERM:**  TBA"
         },
         {
-            "name": "removeallow",
-            "type": "removeallow",
+            "name": "removeonenft",
+            "type": "removeonenft",
             "ricardian_contract": ""
         },
         {
-            "name": "removeonenft",
-            "type": "removeonenft",
+            "name": "removewhite",
+            "type": "removewhite",
             "ricardian_contract": ""
         },
         {
@@ -441,6 +467,13 @@
         {
             "name": "ewstables",
             "type": "ewstable",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "iterations",
+            "type": "iteration",
             "index_type": "i64",
             "key_names": [],
             "key_types": []

@@ -1,4 +1,4 @@
-// "Ver 134, 2 May, 2021";
+// "Ver 134, 5 May, 2021";
 #include <eosio/asset.hpp>
 #include <eosio/eosio.hpp>
 #include <eosio/system.hpp>
@@ -382,27 +382,26 @@ CONTRACT dividenda : public contract {
   };
   using dryrun_data = eosio::multi_index<"dryruns"_n, dryrun_struct>;
 
-  // OPTION airclaim iteration calendar - code: OPTIONSconfig, scope: OPTIONSconfig -IMPORTED 
-  struct iteration {
-    uint64_t    iteration_number;
-    uint32_t    start;
-    std::string start_date;
-    uint32_t    end;
-    std::string end_date;
-    uint16_t    claim_amount;
-    uint16_t    tokens_required;
+// imported declaration 
 
-    uint64_t primary_key() const { return iteration_number; }
-    uint64_t get_secondary() const {return start;}
-  };
+// iteration table definition - updated 5th May 21.
+// freeos airclaim iteration calendar - code: freeosconfig, scope: freeosconfig
+        struct [[eosio::table]] iteration {
+          uint32_t    iteration_number;
+          time_point  start;
+          time_point  end;
+          uint16_t    claim_amount;
+          uint16_t    tokens_required;
 
-  // using iteration_index = eosio::multi_index<"iterations"_n, iteration>;
+          uint64_t primary_key() const { return iteration_number; }
+          uint64_t get_secondary() const {return start.time_since_epoch()._count;}
+        };
 
-  using iteration_index = eosio::multi_index<"iterations"_n, iteration,
-  indexed_by<"start"_n, const_mem_fun<iteration, uint64_t, &iteration::get_secondary>>
-  >;
+        // using iteration_index = eosio::multi_index<"iterations"_n, iteration>;
 
-// imported declaration for access to OPTIONS.hpp //not necessary any longer? verify
+        using iterations_index = eosio::multi_index<"iterations"_n, iteration,
+        indexed_by<"start"_n, const_mem_fun<iteration, uint64_t, &iteration::get_secondary>>
+        >;
 
  //--- freedao deposits table ---//
   struct [[eosio::table]] deposit {  //
@@ -422,30 +421,31 @@ CONTRACT dividenda : public contract {
   using ewsanalytics = eosio::multi_index<"ewstables"_n, ewstable>;
 
 
-// returns the current iteration number
+// returns the current iteration number  Updated 5th May 21.
 uint32_t getclaimiteration() {
 
-  uint32_t this_iteration = 0;  
+  uint32_t this_iteration = 0;
 
-  // current time in UTC seconds
-  uint32_t now = current_time_point().sec_since_epoch();                               //change to uint64_t  a.s.a.p. TODO  
+  uint64_t now = current_time_point().time_since_epoch()._count;
 
-  // search iteration records and find one that matches current time
-  iteration_index iterations(name(freeosconfig_acct), name(freeosconfig_acct).value);
-  auto idx = iterations.get_index<"start"_n>();
-  auto iterator = idx.upper_bound(now);
+  // iterate through iteration records and find one that matches current time
+  iterations_index iterations_table(name(freeosconfig_acct), name(freeosconfig_acct).value);
+  auto start_index = iterations_table.get_index<"start"_n>();
+  auto iteration_record = start_index.upper_bound(now);
 
-  if (iterator != idx.begin()) {
-    iterator--;
+  if (iteration_record != start_index.begin()) {
+    iteration_record--;
   }
 
   // check we are within the period of the iteration
-  if (iterator != idx.end() && now >= iterator->start && now <= iterator->end) {
-    this_iteration = iterator->iteration_number;
+  if (iteration_record != start_index.end() && now >= iteration_record->start.time_since_epoch()._count
+      && now <= iteration_record->end.time_since_epoch()._count) {
+    this_iteration = iteration_record->iteration_number;
   }  
-  
+ 
   return this_iteration;
 }
+
 
 /**
  * auth_vip function

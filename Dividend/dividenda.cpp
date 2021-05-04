@@ -554,7 +554,7 @@ void dividenda::replay()
   check( (current_iter!=0), "Current Iteration == 0 !!");
    
   // Process external deposit table from the beginning to the end sequentially. Exclude current iteration.  
-  auto deposit_itr = deposit_tbl.begin();
+    auto deposit_itr  = deposit_tbl.begin();
   while (deposit_itr != deposit_tbl.end()) {        
     // Each item from the deposit table is examined and eventually processed (order has no meaning).
                                           // I need only to know the amount to divide taken from the row of the deposit table. 
@@ -585,7 +585,7 @@ void dividenda::zerofortest()
     nft_table nft_register( get_self(), get_self().value );
       auto ite=nft_register.begin();
       while (ite != nft_register.end()) {
-        ite = nft_register.erase(ite);
+             ite  = nft_register.erase(ite);
       }  
 } // end of TEST
 
