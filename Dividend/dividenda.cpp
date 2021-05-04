@@ -117,36 +117,37 @@ void dividenda::proposalnew(
 void dividenda::proposalvote(  const name votername,
                                   const uint8_t uservote    )
 {       
-        //---------------
-        // Verifications:
+    //---------------
+    // Verify the voter who is voting right now: 
         require_auth(votername);
 
-        // //Verify completness 'white_list' table before any processing
-        // uint8_t count=0;
+        // Verify completness 'white_list' table before any processing
+        //   to not verify record existence later.
+        uint8_t count = 0;
         whitelist_index white_list(get_self(), get_self().value);
         auto w_itr = white_list.begin();
-        // while (w_itr != white_list.end()) {
-        //  w_itr++; count++;
-        // } 
-        // check((count==2), "white_list table incomplete!" );
+        while (w_itr != white_list.end()) {
+          w_itr++; count++;
+         } 
+        check((count==2), "white_list table incomplete!" );
 
         uint8_t ii;
         ii = auth_vip( votername );
         check( ((ii==2)||(ii==3)), "votername not authorized by whitelist!" );
 
+        // Verify proposal correctness:
         proposal_table proposal(get_self(), get_self().value);
         auto rec_itr = proposal.begin();
         check( (rec_itr != proposal.end()),    "No proposal?!"); 
         check( (rec_itr->expires_at > now() ), "proposal already expired.");  
 
-        // whitelist_index white_list(get_self(), get_self().value); 
-        w_itr = white_list.find(votername.value); // Is the user on the list?
-        check((w_itr!=white_list.end()), "votername not authorized by whitelist" );  
-        check( (w_itr->vote==0),          "Second vote not allowed by the same voter!"); // diffrent than zero if already voted 
+        // whitelist_index white_list(get_self(), get_self().value);                    // to delete
+        // w_itr = white_list.find(votername.value); // Is the user on the list?        // to delete
+        // check((w_itr!=white_list.end()), "votername not authorized by whitelist" );  // to delete 
+        check( (w_itr->vote==0),             "Second vote not allowed by the same voter!"); // diffrent than zero if already voted 
         check( (uservote==1)||(uservote==2), "Vote out of range. Should be 1 or 2!"); 
 
-        //voter is allowed
-        //proposal not expired and voter is allowed - update the vote
+        //proposal and voter is valid at this place - update the vote
         white_list.modify(w_itr, get_self(),[&](auto& pp){
           pp.vote = uservote;
         });
@@ -168,16 +169,18 @@ void dividenda::proposalvote(  const name votername,
                     2            2       - both accepted                    4          finished and accepted */
 
         uint8_t vote1, vote2, voteresult;
-        // Use secondary index to access voting results
+
+        // Use secondary index to access all two voting results: 
+        //  - if this is first voter voting now - the other result read will be 0.
         auto idx = white_list.get_index<"byidno"_n>();    
-        // auto iter = idx.find( VOTER1 ); 
-        auto iter = idx.lower_bound( VOTER1 );
-        // 
+      
+        auto iter = idx.lower_bound( VOTER1 ); // Table integrity is verified at the beginning of this action.
         vote1 = iter->vote; 
+ 
         iter = idx.find( VOTER2 );
-        check( (iter != idx.end()), "VOTER2 not found!" ); 
-        //
+        check( (iter != idx.end()), "VOTER2 not found!" ); // Seems to be not necessary as the table integrity is verified at the beginning
         vote2 = iter->vote;    
+
         voteresult = vote1 * vote2; //See the Voting Table above.
   
         if(voteresult!=0) // voting finished: accepted or refused 
@@ -186,10 +189,10 @@ void dividenda::proposalvote(  const name votername,
           if (voteresult==4)   // Mint NFT: 
             { // proposal accepted - finalize it :)
 
-             if ( getclaimiteration() != 0 )  
-                replay(); // Enforce processing of outstanding (if any) iterations before minting new nft.
-                          // If iteration is zero the replay() should be not called!  
-             else notify_front( ITERATION_ZERO ); // send warning on iteration zero to frontend          
+             if ( getclaimiteration() != 0 )  //If iteration=0 the replay() should be not called! (as it will not allow to mint new NFT). 
+                replay(); // Enforce processing of outstanding (if any) iterations before minting new nft
+                          //   to avoid 'extra past' profits for the new nft owner.
+             else notify_front( ITERATION_ZERO ); // send warning on iteration zero to the frontend          
                                                                                                             
               // Copy proposal to the NFT register (this is newly minted NFT)
               nft_table nft_register( get_self(), get_self().value );
@@ -204,13 +207,13 @@ void dividenda::proposalvote(  const name votername,
                 r.threshold               = propr->threshold;
                 r.rates_left              = propr->rates_left;     
               });
-              notify_front( NFT_MINTED ); // Info to frontend: 'proposal accepted and saved. NFT minted.'
+              notify_front( NFT_MINTED );  // Info to frontend: 'proposal accepted and saved. NFT minted.'
             }
-            else { // proposal refused (voteresult>0 and voteresult!=4) 
-              notify_front( NFT_REFUSED );
+            else { 
+              notify_front( NFT_REFUSED ); // proposal refused ( 0<voteresult<4 ) 
             }
 
-            // Erase proposal independently on voting result 
+            // Erase proposal in all cases when voting finished
             auto pro_itr = proposal.find(1);        
             proposal.modify(pro_itr, get_self(), [&](auto &p) 
             {
@@ -224,7 +227,7 @@ void dividenda::proposalvote(  const name votername,
               p.expires_at          = now();
             });
 
-            // erase voting results in all cases when voting finished
+            // erase voting results in all cases when voting finished! 
             for( auto iter=white_list.begin(); iter!=white_list.end(); iter++ )
             {
               white_list.modify(iter, get_self(), [&]( auto& row )
@@ -586,7 +589,7 @@ void dividenda::zerofortest()
       }  
 } // end of TEST
 
-//TESTS ONLY: remove single nftx from the nftx 
+//TESTS ONLY: remove single nft from the nftx 
 [[eosio::action]]
 void dividenda::removeonenft(uint64_t nft_key)   
 {   
@@ -753,7 +756,7 @@ void dividenda::unlocknft( uint64_t nft_key ){
 
 // Remove whitelist table
 [[eosio::action]]
-void dividenda::removeallow(){
+void dividenda::removewhite(){
   require_auth( _self );
   whitelist_index white_list(get_self(), get_self().value);
   // Delete all records in _messages table

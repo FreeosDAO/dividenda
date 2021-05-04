@@ -38,6 +38,10 @@ proton1 set contract optionsdiva /home/andy/optionsdiv/Dividend/depl_optionsdiva
 proton1 set contract freeosdiv /home/andy/optionsdiv/Dividend/depl_freeosdiv/dividenda -p freeosdiv
 }
 
+function optionsdiv1(){
+eosio-cpp -abigen dividenda.cpp -o=depl_optionsdiv1/dividenda/dividenda.wasm -I=incl_optionsdiv1
+}
+
 ##
 # Color  Variables
 ##
@@ -67,6 +71,7 @@ $(ColorBlue '5)') deploy optionsdiv
 $(ColorBlue '6)') deploy optionsdiva
 $(ColorBlue '7)') deploy freeosdiv
 $(ColorBlue '8)') deploy all
+$(ColorBlue '9)') compile alpha (optionsdiv1)
 $(ColorGreen '0)') Exit
 $(ColorBlue 'Choose an option:') "
         read a
@@ -79,6 +84,7 @@ $(ColorBlue 'Choose an option:') "
           6) deploy_odiva; menu ;;
           7) deploy_fred; menu ;;
           8) deploy_all; menu ;;
+          9) optionsdiv1 ; menu ;;
 		0) exit 0 ;;
 		*) echo -e $red"Wrong option."$clear; WrongCommand;;
         esac

@@ -128,7 +128,7 @@ CONTRACT dividenda : public contract {
 
 
     /**
-     * removeallow action
+     * removewhite action
      *
      * @details Removes the white_list table.
      * @brief This action should be considered to run only in testing or in case of administrative
@@ -137,7 +137,7 @@ CONTRACT dividenda : public contract {
      * @pre requires contract permission
      */
     [[eosio::action]]
-    void removeallow();                            
+    void removewhite();                            
 
 
     /**
