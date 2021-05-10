@@ -42,11 +42,26 @@ CONTRACT dividenda : public contract {
      *        who is the proposer and the two voters along with storing temporalily vote(s) casted by a given voter 
      *        on the current proposal (used only by the action 'proposalvote'). 
      * 
-     * @pre contract permission is required 
+     * @pre contract permission is required            Note: This action has no entry from the frontend.
      *
      */
     [[eosio::action]]
     void upsert( uint8_t role_type, name role_acct ); 
+
+    /**
+     * remove action
+     *
+     * @details Removes row from the white_list table pointed by the parameter. This allows to enter a new row by the insert action
+     *          with changed value..
+     *
+     * @param[in] role_acct - record with this account name will be removed. 
+     *
+     * @pre contract permission is required            Note: This action has no entry from the frontend.
+     *   
+     */
+    [[eosio::action]]
+    void remove( name role_acct );                      
+
 
     /**
      * dryrun action

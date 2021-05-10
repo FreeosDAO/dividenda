@@ -1,32 +1,56 @@
 #include "dividenda.hpp" 
 #include <math.h>
 
-// "Ver 134, 2 May, 2021";
+// "Ver 135, 5th May, 2021";
 
 [[eosio::action]]
-void dividenda::upsert( uint8_t role_type, name role_acct )
+void dividenda::upsert( uint8_t role_type, name role_acct )  //!< insert new item to white_list.
 {  // The role types are enumerated key = 1 proposer key=2 voter key=3 second voter.
    require_auth( get_self() );
    check( (role_type==PROPOSER)||(role_type==VOTER1)||(role_type==VOTER2), "Not correct role type!");  
-   // It should be exactly three records. Codes cannot repeat.
    whitelist_index white_list(get_self(), get_self().value);
-   uint8_t i=0;
-   for( auto iter=white_list.begin(); iter!=white_list.end(); iter++ ){
-      check(iter->idno!=role_type, "The supplied role type already exists!");
-      check(iter->user!=role_acct, "The supplied role account already exists!"); 
-      i++; // Count the records
-   }
-   if(i<3){
-     //auto iterator = white_list.end();  TODO verify! 
-     white_list.emplace(get_self(), [&]( auto& row )
-       {
-        row.idno = role_type;  
-        row.user = role_acct; 
-        row.vote = 0;         // Means related person not voted yet. Note: proposer do not vote at all.  
-       });
-   } else {
 
-   }
+   // PSEUDOCODE:
+   // if (record_exists) then modify_it
+   // else if 'less than three records' then emplace
+   //      else 'nothing to do'. 
+
+   auto ite = white_list.find( role_acct.value ); // Revoke this action! 
+   if ( ite != white_list.end() ){ // Modify has no sense - what will be modified ???
+        white_list.modify(ite, get_self(), [&](auto &p) {
+          p.idno = role_type;
+          p.user = role_acct; // Entered duplicated value cannot be verified!! 
+          p.vote = 0;
+        });
+   } else {
+       // It should be exactly three records. Codes cannot repeat.
+       uint8_t i=0;
+       for( auto iter=white_list.begin(); iter!=white_list.end(); iter++ ){
+          check(iter->idno!=role_type, "The supplied role type already exists!");
+          check(iter->user!=role_acct, "The supplied role account already exists!"); 
+          i++; // Count the records
+       }
+       notify_front( i ); //TEST 
+       if(i<3){
+          white_list.emplace(get_self(), [&]( auto& row )
+          {
+            row.idno = role_type;  
+            row.user = role_acct; 
+            row.vote = 0;         // Not voted yet. 
+          });
+       } else { check( false, "The whitelist table has already three items. Remove one if insert a new one.");
+              }
+     } 
+}
+
+[[eosio::action]]
+void dividenda::remove( name role_acct )   //!< remove one item from white_list
+{
+  require_auth( get_self() );
+  whitelist_index white_list(get_self(), get_self().value);
+    auto ite = white_list.find( role_acct.value );
+    check(ite != white_list.end(), "Record to remove does not exist.");
+    white_list.erase(ite);
 }
 //--------------------------------------------------------------------------
 
@@ -97,8 +121,7 @@ void dividenda::proposalnew(
     // we know here that proposal exists
     // we Process only if no active proposals. This prevents editing existing proposal.
     check( (pro_itr->expires_at < now() ), "There exists not expired proposal! Consider removing it.");
-  	proposal
-.modify(pro_itr, get_self(), [&](auto &p) {
+  	proposal.modify(pro_itr, get_self(), [&](auto &p) {
         p.key                 = 1;
         p.eosaccount          = eosaccount; 
         p.roi_target_cap      = roi_target_cap;
@@ -123,17 +146,12 @@ void dividenda::proposalvote(  const name votername,
 
         // Verify completness 'white_list' table before any processing
         //   to not verify record existence later.
-        uint8_t count = 0;
         whitelist_index white_list(get_self(), get_self().value);
-        auto w_itr = white_list.begin();
-        while (w_itr != white_list.end()) {
-          w_itr++; count++;
-         } 
-        check((count==2), "white_list table incomplete!" );
-
-        uint8_t ii;
-        ii = auth_vip( votername );
-        check( ((ii==2)||(ii==3)), "votername not authorized by whitelist!" );
+        uint8_t i=0;
+        for( auto iter=white_list.begin(); iter!=white_list.end(); iter++ ){
+            i++; // Count the records
+        }  
+        check((i==3), "white_list table incomplete!" );  
 
         // Verify proposal correctness:
         proposal_table proposal(get_self(), get_self().value);
@@ -141,9 +159,9 @@ void dividenda::proposalvote(  const name votername,
         check( (rec_itr != proposal.end()),    "No proposal?!"); 
         check( (rec_itr->expires_at > now() ), "proposal already expired.");  
 
-        // whitelist_index white_list(get_self(), get_self().value);                    // to delete
-        // w_itr = white_list.find(votername.value); // Is the user on the list?        // to delete
-        // check((w_itr!=white_list.end()), "votername not authorized by whitelist" );  // to delete 
+        // whitelist_index white_list(get_self(), get_self().value);                    
+        auto w_itr = white_list.find(votername.value); // Is the user on the list?        
+        check((w_itr!=white_list.end()),     "votername not authorized by whitelist" );  
         check( (w_itr->vote==0),             "Second vote not allowed by the same voter!"); // diffrent than zero if already voted 
         check( (uservote==1)||(uservote==2), "Vote out of range. Should be 1 or 2!"); 
 

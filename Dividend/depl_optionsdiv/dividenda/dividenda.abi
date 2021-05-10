@@ -281,6 +281,16 @@
             ]
         },
         {
+            "name": "remove",
+            "base": "",
+            "fields": [
+                {
+                    "name": "role_acct",
+                    "type": "name"
+                }
+            ]
+        },
+        {
             "name": "removeonenft",
             "base": "",
             "fields": [
@@ -412,6 +422,11 @@
             "name": "regchown",
             "type": "regchown",
             "ricardian_contract": "**PARAMETERS:**\n\n* __owner__ current NFT owner\n* __new_owner__ new NFT owner\n* __nftid__ NFT_id must be received from the front-end\n\n**INTENT:** The intent of regchown is to allow changes in NFT ownership (e.g. only by inheritance or gift).\n\n**TERM:**  TBA"
+        },
+        {
+            "name": "remove",
+            "type": "remove",
+            "ricardian_contract": ""
         },
         {
             "name": "removeonenft",
