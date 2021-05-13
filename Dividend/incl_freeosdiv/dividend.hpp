@@ -27,8 +27,8 @@ const std::string freeosconfig_acct = "freeoscfgd"; // Tom's configuration contr
 
 symbol_code freeos = symbol_code("FREEOS");
 const name tokencontra   = "freeosd"_n;          ///< Token contract (for inline transfers)    // freeostokend (??) 
-const name daoaccount    = "freeosdaodao"_n;          ///< Organizational target DAO account
-
+const name daoaccount    = "freeosdaodao"_n;     ///< Organizational target DAO account
+const name this_account  = "freeosdiv"_n;  
 
 //                          Non-catastrophic frontend warnings used in 'messages' (notify_front)
 //                          Pre-defined messages to be interpreted by the frontend.

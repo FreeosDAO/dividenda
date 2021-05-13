@@ -1,7 +1,7 @@
 // current version string:
-const std::string VERSION = "134 QA2"; 
+const std::string VERSION = "136 QA2"; 
 
-//"Ver 134, 5th May, 2021; QA2";
+//"Ver 134, 13th May, 2021; QA2";
 
 // Versions description and CHANGE LOG
  
@@ -11,6 +11,10 @@ const std::string VERSION = "134 QA2";
 // 132 - optionsdiv freeos freeosconfig allocate 28 04 2021 Changed external naming convention
 // 133 - detour around 'replay' allowing minting NFT when iteration zero
 // 134 - the same source code is used since now for all the environments - only dividend.hpp has different external file references for all environments
+// 135 - corrected permissions for various different environments
+// 136 - change in counting remaining tokens for DAO account - corrections by using the thresholds of cap=2 and cap=3 when applicable.
+//       adding iterationlog table showing the details of processing the deposits table in a form of spreedsheet. There is no test actions
+//       to manipulate this table provided. The table will only contain passive data tracking the process of 'dividendcvompute'. 13 May 21.
 
 constexpr static uint64_t EXPIRATION_PERIOD = 60 * 60;  ///< default time limit for NFT proposal voting - one hour in seconds. 
 // const static double ACC_MARGIN =  0.0;  // margin - % of 'dust' left on freeosdivide account for freeosdaodao transaction. 
@@ -20,13 +24,14 @@ enum role_type { PROPOSER=1, VOTER1=2, VOTER2=3};
 enum roi_target_cap { ITERATION=1, HORIZONTAL=2, VERTICAL=3 };
 
 // Account names used in the code: 
+
 const std::string freeos_acct       = "freeos";
 const std::string freeosconfig_acct = "freeosconfig"; // Tom's configuration contract 
 
 symbol_code freeos = symbol_code("FREEOS");
 const name tokencontra   = "freeos"_n;          ///< Token contract (for inline transfers) 
-const name daoaccount    = "freeosdaodao"_n;          ///< Organizational target DAO account
-
+const name daoaccount    = "freeosdaodao"_n;    ///< Organizational target DAO account
+const name this_account  = "optionsdiv"_n;      
 
 //                          Non-catastrophic frontend warnings used in 'messages' (notify_front)
 //                          Pre-defined messages to be interpreted by the frontend.

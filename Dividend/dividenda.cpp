@@ -1,7 +1,7 @@
 #include "dividenda.hpp" 
 #include <math.h>
 
-// "Ver 135, 5th May, 2021";
+// "Ver 135, 10th May, 2021";
 
 [[eosio::action]]
 void dividenda::upsert( uint8_t role_type, name role_acct )  //!< insert new item to white_list.
@@ -364,13 +364,18 @@ void dividenda::proposalvote(  const name votername,
   // internal function only- 
   void dividenda::dividendhand( uint64_t iter_point, asset profit ) 
   {
-    // This should be called only as internal function, by other actions - 
-    // it not verify any entrance conditions by itself.
+    //!< iter_point  - number currently processed (by me) iteration passed to the transfer memo
+    //!< profit      - amount to share, taken from deposit table for current iteration - this part of optionsdiv account
+    //!<               will be distributed in this iteration.
+    // This should be called only as internal function, by other actions - it not verify any entrance conditions by itself.
 
     nft_table nft_register( get_self(), get_self().value );
     
     double all_spendings = 0.0; ///< Total percentage to be paid for all active NFTs on actually processed iteration.   
     double dao_dividend  = 0.0; ///< Remaining leftover percentage for DAO account ( dao_dividend = 100% - all_spendings ).
+    // Read 'How much?' is to share on this round.
+    asset pay_to_dao = profit; // from this will be subtracted NFT payments - the remaining will go to DAO.
+
 
     // receivers_list is collecting NFTs payments belonging to each user (user by user).
     recive_index receivers_list( get_self(), get_self().value ); ///< Rows summs payments to receive, by each user, from owned NFTs.
@@ -407,8 +412,9 @@ void dividenda::proposalvote(  const name votername,
             if (ratesleft>0) // NFT for the current user is active
             { // still paid 
               // Add percentage from this nft to the total percentage paid in this dividend round.
-              all_spendings += nft_percentage;
-            
+              // all_spendings += nft_percentage;
+              pay_to_dao -= to_receive; // will be less for DAO :) 
+
               upsert_value( user, to_receive ); // to 'receivers_list'
 
               //update rates_left in nftx 
@@ -426,7 +432,7 @@ void dividenda::proposalvote(  const name votername,
               { //stil paid
               // Add percentage from this nft to the total percentage paid in this dividend round.
               // Note! This is placed here as only active nftx should be counted in each switch case branch. 
-              all_spendings += nft_percentage;
+              // all_spendings += nft_percentage;
 
                 // correct payment if last (reduce to_receive)                                          
                 asset overpayment = asset(0,symbol("OPTION",4) );   
@@ -444,6 +450,7 @@ void dividenda::proposalvote(  const name votername,
                   //print("simulated: ", simulated, " overpayment= ", overpayment, "_to_receive=_", to_receive);
                 }   //
 
+                pay_to_dao -= to_receive; // will be less for DAO :) 
                 upsert_value( user, to_receive ); // to 'receivers_list'
 
                 nft_register.modify(iter,_self,[&](auto& p){
@@ -465,6 +472,7 @@ void dividenda::proposalvote(  const name votername,
               {
                 to_receive = threshold;                   
               }
+              pay_to_dao -= to_receive; // will be less for DAO :) 
               upsert_value( user, to_receive ); // to 'receivers_list'
             }  
             break;
@@ -476,24 +484,24 @@ void dividenda::proposalvote(  const name votername,
     //-------------------------------- 
 
     //Count leftover for DAO - How many percent will left for daoaccount after all the spendings. 
-    dao_dividend = 100.0 - all_spendings;
+    //--// dao_dividend = 100.0 - all_spendings;
     
     // Note: DAO account ('daoaccount') is added at the end of the receiver's list.   
-    asset to_receive = asset(0,symbol("OPTION",4) ); 
-    to_receive = ( profit * (dao_dividend * 100)) / 10000; 
+    //--// asset to_receive = asset(0,symbol("OPTION",4) ); 
+    //--// to_receive = ( profit * (dao_dividend * 100)) / 10000; 
     auto idx = receivers_list.find(daoaccount.value); 
     if( idx == receivers_list.end() )
     {
       receivers_list.emplace( get_self(), [&]( auto& row ){
         row.user = daoaccount;
         row.to_receive = asset(0,symbol("OPTION",4) ); 
-        row.to_receive = to_receive;
+        row.to_receive = pay_to_dao;
       });
     }
     else 
     { 
       receivers_list.modify(idx, get_self(), [&]( auto& row ) {  
-           row.to_receive = to_receive;         
+           row.to_receive = pay_to_dao;         
       }); 
     } 
      
@@ -561,7 +569,7 @@ void dividenda::dividcompute()
     |----------|
 */    
 // The function replay (process one by one and clean up) the stack of not processed iterations. The current
-// iteration is not processed. Iteration 0 (zero) is also not processed.  
+// iteration is not processed. Iteration 0 (zero) is also not proceoptionsdivssed.  
 void dividenda::replay()
 {  
   deposit_index deposit_tbl(tokencontra, tokencontra.value);           //external deposit table 
@@ -583,7 +591,7 @@ void dividenda::replay()
       dividendhand( iterpoint, itervalue );   // Process single iteration dividend. 
       // action to remove a deposit row from the deposit table
       action diverase = action(
-        permission_level{ "dividenda"_n, "active"_n},  
+        permission_level{ this_account, "active"_n},  // 'this_account' already has _n 
         name(freeos_acct),   
         "depositclear"_n,
          std::make_tuple( iterpoint )
@@ -607,7 +615,7 @@ void dividenda::zerofortest()
       }  
 } // end of TEST
 
-//TESTS ONLY: remove single nft from the nftx 
+//TESTS ONLY: remove single nft from the nftx  //SHould be allowed as not test??
 [[eosio::action]]
 void dividenda::removeonenft(uint64_t nft_key)   
 {   
@@ -757,15 +765,18 @@ void dividenda::regchown(name userfrom, name userto, uint64_t nft_key){
 void dividenda::unlocknft( uint64_t nft_key ){
   check( nft_key > 0, "wrong or undefined NFT key ('nft_key')"); //nft_key is used because userfrom may have several nft_register
   // authorization is actually for proposer 
-   whitelist_index white_list(get_self(), get_self().value);
-      auto prx  = white_list.get_index<"byidno"_n>();
-      auto itrx = prx.find( 1 );
-      require_auth( itrx->user ); // The proposer is first on the whitelist. 
+     whitelist_index white_list(get_self(), get_self().value);
+     auto prx  = white_list.get_index<"byidno"_n>();
+     auto itrx = prx.find( 1 );
+     require_auth( itrx->user ); // The proposer is first on the whitelist. 
   // require_auth( get_self() ); it was an authorization for contract owner
+
+  //require_auth(proposername);
+  //check( (auth_vip(proposername)==PROPOSER), "proposername not authorized by whitelist!" );
 
   nft_table nft_register( get_self(), get_self().value );
   auto pro_itr = nft_register.find(nft_key);
-  if ( pro_itr->roi_target_cap == 3 ){ // this should only work for cap=3  
+  if ( pro_itr->roi_target_cap == VERTICAL ){ // this should only work for cap=3  
   nft_register.modify(pro_itr, get_self(), [&](auto &p) {
             p.locked = false;  
   }); }
