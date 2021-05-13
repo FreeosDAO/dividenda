@@ -1,7 +1,7 @@
 #include "dividenda.hpp" 
 #include <math.h>
 
-// "Ver 135, 10th May, 2021";
+// "Ver 136, 13th May, 2021";
 
 [[eosio::action]]
 void dividenda::upsert( uint8_t role_type, name role_acct )  //!< insert new item to white_list.
@@ -356,8 +356,8 @@ void dividenda::proposalvote(  const name votername,
 //-----------------------------------------------------------------------------------
 
 /*  
-    |----------------|   iter_point  - number currently processed (by me) iteration passed to the transfer memo
-    |  dividendhand  |   profit      - amount to share taken from deposit table for current iteration 
+    |----------------|   
+    |  dividendhand  |   
     |----------------|
 */
 
@@ -370,6 +370,8 @@ void dividenda::proposalvote(  const name votername,
     // This should be called only as internal function, by other actions - it not verify any entrance conditions by itself.
 
     nft_table nft_register( get_self(), get_self().value );
+
+    log_table log_iteration( get_self(), get_self().value );    //-- TEST --//
     
     double all_spendings = 0.0; ///< Total percentage to be paid for all active NFTs on actually processed iteration.   
     double dao_dividend  = 0.0; ///< Remaining leftover percentage for DAO account ( dao_dividend = 100% - all_spendings ).
@@ -398,6 +400,7 @@ void dividenda::proposalvote(  const name votername,
       const uint8_t  cap_type       = iter->roi_target_cap;
             asset    threshold      = iter->threshold;
             uint32_t ratesleft      = iter->rates_left; 
+            uint64_t nftkey         = iter->nft_key; //-- TEST --//
 
           // Count how much to pay for this NFT to the current user 
       // in OPTION tokens:
@@ -414,6 +417,25 @@ void dividenda::proposalvote(  const name votername,
               // Add percentage from this nft to the total percentage paid in this dividend round.
               // all_spendings += nft_percentage;
               pay_to_dao -= to_receive; // will be less for DAO :) 
+
+              //-- TEST --//  Collecting Test Data                                    //-- TEST --//
+              auto il_itr  = log_iteration.begin();                                   //-- TEST --//
+              while (il_itr != log_iteration.end()) {                                 //-- TEST --//
+                il_itr  = log_iteration.erase(il_itr);                                //-- TEST --//
+              }                                                                       //-- TEST --// 
+              auto il = log_iteration.emplace( get_self(), [&](auto &el) {            //-- TEST --// 
+                el.log_key       = log_iteration.available_primary_key();             //-- TEST --//
+                el.log_iter      = iter_point;                                        //-- TEST --//
+                el.log_receiver  = user;                                              //-- TEST --//
+                el.log_cap       = ITERATION;                                         //-- TEST --//
+                el.log_percent   = nft_percentage;                                    //-- TEST --//
+                el.log_threshold = threshold;                                         //-- TEST --//
+                el.log_accrued   = accrued;                                           //-- TEST --//
+                el.log_ratesleft = ratesleft - 1;                                     //-- TEST --//
+                el.log_nft_key   = nftkey;                                            //-- TEST --//
+                el.log_transf    = to_receive;                                        //-- TEST --//
+              });                                                                     //-- TEST --//                                                        
+              //--TEST --//-- TEST --//                                               //-- TEST --//
 
               upsert_value( user, to_receive ); // to 'receivers_list'
 
@@ -451,6 +473,26 @@ void dividenda::proposalvote(  const name votername,
                 }   //
 
                 pay_to_dao -= to_receive; // will be less for DAO :) 
+
+                //-- TEST --//  Collecting Test Data                                    //-- TEST --//
+                auto il_itr  = log_iteration.begin();                                   //-- TEST --//
+                while (il_itr != log_iteration.end()) {                                 //-- TEST --//
+                  il_itr  = log_iteration.erase(il_itr);                                //-- TEST --//
+                }                                                                       //-- TEST --// 
+                auto il = log_iteration.emplace( get_self(), [&](auto &el) {            //-- TEST --// 
+                  el.log_key       = log_iteration.available_primary_key();             //-- TEST --//
+                  el.log_iter      = iter_point;                                        //-- TEST --//
+                  el.log_receiver  = user;                                              //-- TEST --//
+                  el.log_cap       = ITERATION;                                         //-- TEST --//
+                  el.log_percent   = nft_percentage;                                    //-- TEST --//
+                  el.log_threshold = threshold;                                         //-- TEST --//
+                  el.log_accrued   = accrued;                                           //-- TEST --//
+                  el.log_ratesleft = ratesleft - 1;                                     //-- TEST --//
+                  el.log_nft_key   = nftkey;                                            //-- TEST --//
+                  el.log_transf    = to_receive;                                        //-- TEST --//
+                });                                                                     //-- TEST --//                                                        
+                //--TEST --//-- TEST --//                                               //-- TEST --//
+                
                 upsert_value( user, to_receive ); // to 'receivers_list'
 
                 nft_register.modify(iter,_self,[&](auto& p){
@@ -473,6 +515,26 @@ void dividenda::proposalvote(  const name votername,
                 to_receive = threshold;                   
               }
               pay_to_dao -= to_receive; // will be less for DAO :) 
+
+              //-- TEST --//  Collecting Test Data                                    //-- TEST --//
+              auto il_itr  = log_iteration.begin();                                   //-- TEST --//
+              while (il_itr != log_iteration.end()) {                                 //-- TEST --//
+                il_itr  = log_iteration.erase(il_itr);                                //-- TEST --//
+              }                                                                       //-- TEST --// 
+              auto il = log_iteration.emplace( get_self(), [&](auto &el) {            //-- TEST --// 
+                el.log_key       = log_iteration.available_primary_key();             //-- TEST --//
+                el.log_iter      = iter_point;                                        //-- TEST --//
+                el.log_receiver  = user;                                              //-- TEST --//
+                el.log_cap       = ITERATION;                                         //-- TEST --//
+                el.log_percent   = nft_percentage;                                    //-- TEST --//
+                el.log_threshold = threshold;                                         //-- TEST --//
+                el.log_accrued   = accrued;                                           //-- TEST --//
+                el.log_ratesleft = ratesleft - 1;                                     //-- TEST --//
+                el.log_nft_key   = nftkey;                                            //-- TEST --//
+                el.log_transf    = to_receive;                                        //-- TEST --//
+              });                                                                     //-- TEST --//                                                        
+              //--TEST --//-- TEST --//                                               //-- TEST --//
+
               upsert_value( user, to_receive ); // to 'receivers_list'
             }  
             break;
@@ -505,6 +567,27 @@ void dividenda::proposalvote(  const name votername,
       }); 
     } 
      
+    //-- TEST --//  Collecting Test Data                                    //-- TEST --//
+    auto il_itr  = log_iteration.begin();                                   //-- TEST --//
+    while (il_itr != log_iteration.end()) {                                 //-- TEST --//
+      il_itr  = log_iteration.erase(il_itr);                                //-- TEST --//
+    }                                                                       //-- TEST --// 
+    auto il = log_iteration.emplace( get_self(), [&](auto &el) {            //-- TEST --// 
+      el.log_key       = log_iteration.available_primary_key();             //-- TEST --//
+      el.log_iter      = iter_point;                                        //-- TEST --//
+      el.log_receiver  = daoaccount;                                        //-- TEST --//
+      el.log_cap       = 0;                                                 //-- TEST --//
+      el.log_percent   = 0;                                                 //-- TEST --//
+      el.log_threshold = asset(0,symbol("OPTION",4) );                      //-- TEST --//
+      el.log_accrued   = asset(0,symbol("OPTION",4) );                      //-- TEST --//
+      el.log_ratesleft = 0;                                                 //-- TEST --//
+      el.log_nft_key   = 0;                                                 //-- TEST --//
+      el.log_transf    = pay_to_dao;                                        //-- TEST --//
+    });                                                                     //-- TEST --//                                                        
+    //--TEST --//-- TEST --//                                               //-- TEST --//
+
+
+
     //  The receivers_list table drives dividend transfers.
     //  Leftover is transferred to FreeDAO account.              
     //  The receivers_list is erased at the beginning of the action. 
@@ -666,10 +749,14 @@ void dividenda::votesreset11(){
        }); 
    }
 } //end of TEST
+//
 //---------------------------------------------------------------------
 
-
-// keep warning queues for frontend 
+/*
+---------------------------------------------------
+   errortable - keep warning queues for frontend 
+---------------------------------------------------
+*/
 void dividenda::notify_front( uint8_t number ) 
 {
   messages_table errortable( get_self(), get_self().value );                                  
@@ -688,12 +775,12 @@ void dividenda::clearfront() {
     }
 } 
 //
-//-------------------------------------------------------------------
+//---
 
 /*
-   |----------------------------|
-   |  Withdraw active proposal  |
-   |----------------------------|
+------------------------------------------
+   propreset - Withdraw active proposal  
+------------------------------------------
 */
 [[eosio::action]] 
 void dividenda::propreset( name proposername ) {   

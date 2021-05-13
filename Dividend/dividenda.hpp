@@ -1,4 +1,4 @@
-// "Ver 134, 5 May, 2021";
+// "Ver 136, 13 May, 2021";
 #include <eosio/asset.hpp>
 #include <eosio/eosio.hpp>
 #include <eosio/system.hpp>
@@ -370,6 +370,23 @@ CONTRACT dividenda : public contract {
       uint64_t primary_key() const {return nft_key;}
   };
   using nft_table = eosio::multi_index<"nfts"_n, nft_struct>; 
+
+
+  TABLE log_struct {   // dtructure for tracking dividend distributions by iterations //-- TEST --//
+    uint64_t log_key;                                                                 //-- TEST --//
+    uint64_t log_iter;                                                                //-- TEST --//
+    name     log_receiver;                                                            //-- TEST --//
+    uint8_t  log_cap;                                                                 //-- TEST --//
+    double   log_percent;                                                             //-- TEST --//
+    asset    log_threshold;                                                           //-- TEST --//
+    asset    log_accrued;                                                             //-- TEST --//
+    uint32_t log_ratesleft;                                                           //-- TEST --//
+    uint64_t log_nft_key;                                                             //-- TEST --//
+    asset    log_transf;                                                              //-- TEST --//
+    uint64_t primary_key() const {return log_key;}                                    //-- TEST --//
+  };                                                                                  //-- TEST --// 
+  using log_table = eosio::multi_index<"logs"_n, log_struct>;                         //-- TEST --//
+
 
   TABLE whitelist_struct {                 //!< whitelist_struct - List of allowed proposers and voters along with their vote.
       uint64_t idno;                       //!< (1-proposer, 2,3 voters)
