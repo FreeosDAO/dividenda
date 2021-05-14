@@ -1,7 +1,7 @@
 // current version string:
-const std::string VERSION = "136 Dev2"; 
+const std::string VERSION = "137 Dev2"; 
 
-//"13 May, 2021; Dev2";
+//"14 May, 2021; Dev2";
 
 // Versions description and CHANGE LOG
  
@@ -12,6 +12,8 @@ const std::string VERSION = "136 Dev2";
 // 133 - detour around 'replay' allowing minting NFT when iteration zero
 // 134 - the same source code is used since now for all the environments - only dividend.hpp has different external file references for all environments
 // 135 - adding remove record for whitelist table
+// 136 - adding logs table and daoaccount divided counted as asset not percentage
+// 137 - minor updates for the logs table
 
 constexpr static uint64_t EXPIRATION_PERIOD = 60 * 60;  ///< default time limit for NFT proposal voting - one hour in seconds. 
 // const static double ACC_MARGIN =  0.0;  // margin - % of 'dust' left on freeosdivide account for freeosdaodao transaction. 
