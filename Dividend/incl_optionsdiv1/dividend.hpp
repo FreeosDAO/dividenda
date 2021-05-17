@@ -25,6 +25,7 @@ const name tokencontra              = "freeos1"_n;          ///< Token contract 
 
 const std::string freeosconfig_acct = "freeoscfg1";         // Tom's configuration contract 
 const name daoaccount               = "freeosdaodao"_n;     ///< Organizational target DAO account
+const name this_account  = "optionsdiv1"_n;     
 
 // symbol_code freeos = symbol_code("FREEOS");
 
