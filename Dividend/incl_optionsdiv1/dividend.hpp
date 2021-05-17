@@ -1,7 +1,7 @@
 // current version string:
-const std::string VERSION = "134 Alpha"; 
+const std::string VERSION = "Version = 137 auto"; 
 
-//"Ver 134, 4th May, 2021; Auto";
+//"Ver 137, 17th May, 2021; auto";
 
 // Versions description and CHANGE LOG
  
@@ -11,6 +11,7 @@ const std::string VERSION = "134 Alpha";
 // 132 - optionsdiv freeos freeosconfig allocate 28 04 2021 Changed external naming convention
 // 133 - detour around 'replay' allowing minting NFT when iteration zero
 // 134 - the same source code is used since now for all the environments - only dividend.hpp has different external file references for all environments
+// 137 - latest code based on QA2.
 
 constexpr static uint64_t EXPIRATION_PERIOD = 60 * 60;  ///< default time limit for NFT proposal voting - one hour in seconds. 
 // const static double ACC_MARGIN =  0.0;               // margin - % of 'dust' left on freeosdivide account for freeosdaodao transaction. 
@@ -25,7 +26,7 @@ const name tokencontra              = "freeos1"_n;          ///< Token contract 
 
 const std::string freeosconfig_acct = "freeoscfg1";         // Tom's configuration contract 
 const name daoaccount               = "freeosdaodao"_n;     ///< Organizational target DAO account
-const name this_account  = "optionsdiv1"_n;     
+const name this_account             = "optionsdiv1"_n;     
 
 // symbol_code freeos = symbol_code("FREEOS");
 
