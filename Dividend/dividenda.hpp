@@ -1,4 +1,4 @@
-// "Ver 136, 13 May, 2021";
+// "Ver 138, 17 May, 2021";
 #include <eosio/asset.hpp>
 #include <eosio/eosio.hpp>
 #include <eosio/system.hpp>
@@ -219,7 +219,8 @@ CONTRACT dividenda : public contract {
    [[eosio::action]]
    void clear1();  
 
-
+   [[eosio::action]]
+   void removelogs(); // TEST - removes logs table 
 
     /**
      * votesreset11 action       TEST 

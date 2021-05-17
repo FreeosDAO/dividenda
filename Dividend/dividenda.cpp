@@ -374,11 +374,11 @@ void dividenda::proposalvote(  const name votername,
 
     nft_table nft_register( get_self(), get_self().value );
 
-    log_table log_iteration( get_self(), get_self().value );    //-- TEST --//
-    auto il_itr  = log_iteration.begin();                       //-- TEST --//
-    while (il_itr != log_iteration.end()) {                     //-- TEST --//
-      il_itr  = log_iteration.erase(il_itr);                    //-- TEST --//
-    }                                                           //-- TEST --//
+    log_table log_iteration( get_self(), get_self().value );       //-- TEST --//
+    // auto il_itr  = log_iteration.begin();                       //-- TEST --//
+    // while (il_itr != log_iteration.end()) {                     //-- TEST --//
+    //  il_itr  = log_iteration.erase(il_itr);                     //-- TEST --//
+    // }                                                           //-- TEST --//
     
     double all_spendings = 0.0; ///< Total percentage to be paid for all active NFTs on actually processed iteration.   
     double dao_dividend  = 0.0; ///< Remaining leftover percentage for DAO account ( dao_dividend = 100% - all_spendings ).
@@ -858,6 +858,18 @@ void dividenda::unlocknft( uint64_t nft_key ){
   }); }
   else notify_front( NON_FOUNDER ); // notify frontend: 'action ignored: trying to unlock non-founder account'. 
 }
+
+// Remove the logs table - TEST
+[[eosio::action]]
+void dividenda::removelogs(){
+  require_auth( _self );
+log_table log_iteration( get_self(), get_self().value );    //-- TEST --//
+auto il_itr  = log_iteration.begin();                       //-- TEST --//
+while (il_itr != log_iteration.end()) {                     //-- TEST --//
+  il_itr  = log_iteration.erase(il_itr);                    //-- TEST --//
+}                         
+}         
+
 
 // Remove whitelist table
 [[eosio::action]]

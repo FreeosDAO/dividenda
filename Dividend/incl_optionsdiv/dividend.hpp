@@ -1,7 +1,7 @@
 // current version string:
-const std::string VERSION = "137 QA2"; 
+const std::string VERSION = "Version = 138 QA2"; 
 
-//"Ver 137, 14th May, 2021; QA2";
+//"Ver 138, 14th May, 2021; QA2";
 
 // Versions description and CHANGE LOG
  
@@ -16,6 +16,7 @@ const std::string VERSION = "137 QA2";
 //       adding iterationlog table showing the details of processing the deposits table in a form of spreedsheet. There is no test actions
 //       to manipulate this table provided. The table will only contain passive data tracking the process of 'dividendcvompute'. 13 May 21.
 // 137 - minor updates for logs table
+// 138 - further improvements for logs
 
 constexpr static uint64_t EXPIRATION_PERIOD = 60 * 60;  ///< default time limit for NFT proposal voting - one hour in seconds. 
 // const static double ACC_MARGIN =  0.0;  // margin - % of 'dust' left on freeosdivide account for freeosdaodao transaction. 

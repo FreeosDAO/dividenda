@@ -1,7 +1,7 @@
 // current version string:
-const std::string VERSION = "134 Auto"; 
+const std::string VERSION = "Version = 138 Auto"; 
 
-//"Ver 134, 2nd May, 2021; Auto";
+//"Ver 138, 17 May, 2021; Auto";
 
 // Versions description and CHANGE LOG
  
@@ -22,6 +22,7 @@ enum roi_target_cap { ITERATION=1, HORIZONTAL=2, VERTICAL=3 };
 // Account names used in the code: 
 const std::string freeos_acct       = "freeosa";
 const name tokencontra              = "freeosa"_n;          ///< Token contract (for inline transfers)   // freeostokena (??) 
+const name this_account             = "optionsdiva"_n;  
 
 const std::string freeosconfig_acct = "freeoscfga";         // Tom's configuration contract 
 const name daoaccount               = "freeosdaodao"_n;     ///< Organizational target DAO account

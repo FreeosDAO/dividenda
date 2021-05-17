@@ -337,6 +337,11 @@
             ]
         },
         {
+            "name": "removelogs",
+            "base": "",
+            "fields": []
+        },
+        {
             "name": "removeonenft",
             "base": "",
             "fields": [
@@ -472,6 +477,11 @@
         {
             "name": "remove",
             "type": "remove",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "removelogs",
+            "type": "removelogs",
             "ricardian_contract": ""
         },
         {
