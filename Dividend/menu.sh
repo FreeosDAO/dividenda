@@ -36,6 +36,7 @@ function deploy_all(){
 proton1 set contract optionsdiv /home/andy/optionsdiv/Dividend/depl_optionsdiv/dividenda -p optionsdiv
 proton1 set contract optionsdiva /home/andy/optionsdiv/Dividend/depl_optionsdiva/dividenda -p optionsdiva
 proton1 set contract freeosdiv /home/andy/optionsdiv/Dividend/depl_freeosdiv/dividenda -p freeosdiv
+proton1 set contract optionsdiv1 /home/andy/optionsdiv/Dividend/depl_optionsdiv1/dividenda -p optionsdiv1
 }
 
 function optionsdiv1(){
