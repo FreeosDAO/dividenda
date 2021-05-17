@@ -79,8 +79,8 @@ CONTRACT dividenda : public contract {
      * @param[in] proposername - account name of the proposer
      *
      * @param[out] (first name used by the bloks.io and eosstudio, second name used in the code)
-     * -      analytics table - displays cummulative percentage of active nft's on a basis of cap category
-     * -      summary1  table - displays cumulative percentage of active nft's on a basis of each user nft's.   
+     * -      ewstable table - displays cummulative percentage of active nft's on a basis of cap category
+     * -      dryruns  table - displays cumulative percentage of active nft's on a basis of each user nft's.   
      *
      * @pre required any VIP account listed on whitelist.  
      *          
@@ -89,7 +89,7 @@ CONTRACT dividenda : public contract {
     void dryrun( name proposername ); 
    
     /*!
-     * proposalne action (proposal new)
+     * proposalnew action (proposal new)
      *
      * @details Creates new proposal. The proposal record (if accepted) becomes a base to mint new nft.
      * @param proposer          - The account name of a person eligible to create new proposal.
@@ -196,7 +196,7 @@ CONTRACT dividenda : public contract {
    /**
     * clear action       TEST!!!
     *
-    * @details TEST ONLY: zeroes the 'summary' table without erasing it (no RAM released)
+    * @details TEST ONLY: zeroes the 'receivers_list' table without erasing it (no RAM released)
     *
     * @brief Warning: Note that all TEST functions are accessing the tables outside of a normally provided sequence of actions.
     * The testing function used incorrectly may cause unpredictable results. The TEST functions will be removed in production. 
@@ -210,7 +210,7 @@ CONTRACT dividenda : public contract {
    /**
     * clear1 action      TEST!!!
     *
-    * @details TEST ONLY: Completely erase 'summary' table.
+    * @details TEST ONLY: Completely erase 'receivers_list' table.
     * 
     * @brief Warning: Note that all TEST functions are accessing the tables outside of a normally provided sequence of actions.
     * The testing function used incorrectly may cause unpredictable results. The TEST functions will be removed in production. 
