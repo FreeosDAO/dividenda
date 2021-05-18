@@ -1,7 +1,7 @@
 // current version string:
 const std::string VERSION = "Version = 138 Dev2"; 
 
-//"17 May, 2021; Dev2";
+//"18 May, 2021; Dev2";
 
 // Versions description and CHANGE LOG
  
@@ -14,7 +14,7 @@ const std::string VERSION = "Version = 138 Dev2";
 // 135 - adding remove record for whitelist table
 // 136 - adding logs table and daoaccount divided counted as asset not percentage
 // 137 - minor updates for the logs table
-// 138 - further improvements for logs
+// 138 - further improvements for logs/ Added lock verification on proposal entry parameters.
 
 constexpr static uint64_t EXPIRATION_PERIOD = 60 * 60;  ///< default time limit for NFT proposal voting - one hour in seconds. 
 // const static double ACC_MARGIN =  0.0;  // margin - % of 'dust' left on freeosdivide account for freeosdaodao transaction. 

@@ -1,7 +1,7 @@
 #include "dividenda.hpp" 
 #include <math.h>
 
-// "Ver 137, 14th May, 2021";
+// "Ver 138, 18th May, 2021";
 
 [[eosio::action]]
 void dividenda::upsert( uint8_t role_type, name role_acct )  //!< insert new item to white_list.
@@ -89,6 +89,7 @@ void dividenda::proposalnew(
   check( (sym==obj), "The symbol is not OPTION!");
   if (roi_target_cap==ITERATION) check( (rates_left>0), "This is Iteration Cap(1), rates_left should be above zero!");
   if (roi_target_cap!=ITERATION) check( threshold.amount > 0, "Must enter positive threshold!" );
+  if ( locked ) check( roi_target_cap==VERTICAL, "Only Vertical Cap can be locked!" );
  
   // summarize the analytics table (used data are coming from previous run or dryrun)
   ewsanalytics analytics(get_self(), get_self().value ); 
@@ -826,7 +827,7 @@ void dividenda::regchown(name userfrom, name userto, uint64_t nft_key){
   auto pro_itr = nft_register.find(nft_key);
   check( (pro_itr->eosaccount == userfrom ), "The NFT key does not agree with the owner account name!");
 
-  check( nft_key > 0, "wrong or undefined NFT key"); //nft_key is used because userfrom may have several nft_register
+  check( nft_key >= 0, "wrong or undefined NFT key"); //nft_key is used because userfrom may have several nft_register
   check( userfrom != userto, "cannot transfer to self" );    
   check( is_account( userto ), "userto account does not exist");
 
