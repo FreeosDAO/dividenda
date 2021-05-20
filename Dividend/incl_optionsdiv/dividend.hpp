@@ -1,7 +1,7 @@
 // current version string:
-const std::string VERSION = "Version = 138 QA2"; 
+const std::string VERSION = "Version = 139 QA2"; 
 
-//"Ver 138, 14th May, 2021; QA2";
+//"Ver 139, 21th May, 2021; QA2";
 
 // Versions description and CHANGE LOG
  

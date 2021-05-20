@@ -1,10 +1,12 @@
-// "Ver 138, 17 May, 2021";
+// "Ver 139, 21 May, 2021";
 #include <eosio/asset.hpp>
 #include <eosio/eosio.hpp>
 #include <eosio/system.hpp>
 #include <eosio/time.hpp>
+#include <math.h>
+// #include "tests.hpp"  // include file with tests only - remove for production
 #include "freeos.hpp"       
-#include "dividend.hpp"     //Must be dividend.hpp not dividenda :)
+#include "dividend.hpp"     // Must be dividend.hpp - not dividenda :)
 
 using namespace std;
 using namespace eosio; 

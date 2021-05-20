@@ -1,8 +1,14 @@
 #include "dividenda.hpp" 
-#include <math.h>
 
-// "Ver 138, 18th May, 2021";
+// "Ver 139, 21th May, 2021";
 
+  /*
+   +-----------------------------------
+   +  upsert -  
+   +-----------------------------------
+             +
+             +  - Creates whitelist table item by item.   
+             */
 [[eosio::action]]
 void dividenda::upsert( uint8_t role_type, name role_acct )  //!< insert new item to white_list.
 {  // The role types are enumerated key = 1 proposer key=2 voter key=3 second voter.
@@ -19,11 +25,11 @@ void dividenda::upsert( uint8_t role_type, name role_acct )  //!< insert new ite
    if ( ite != white_list.end() ){ // Modify has no sense - what will be modified ???
         white_list.modify(ite, get_self(), [&](auto &p) {
           p.idno = role_type;
-          p.user = role_acct; // Entered duplicated value cannot be verified!! 
+          p.user = role_acct; // Entered duplicated value cannot be verified!! //Rather send message that record must be removed first - no modify
           p.vote = 0;
         });
    } else {
-       // It should be exactly three records. Codes cannot repeat.
+       // It should be exactly three records. role_types and role_accts cannot repeat.
        uint8_t i=0;
        for( auto iter=white_list.begin(); iter!=white_list.end(); iter++ ){
           check(iter->idno!=role_type, "The supplied role type already exists!");
@@ -43,6 +49,13 @@ void dividenda::upsert( uint8_t role_type, name role_acct )  //!< insert new ite
      } 
 }
 
+  /*
+   +-----------------------------------
+   +  remove -  
+   +-----------------------------------
+             +
+             +  - Remove one row from the white_list table.   
+             */
 [[eosio::action]]
 void dividenda::remove( name role_acct )   //!< remove one item from white_list
 {
@@ -52,15 +65,38 @@ void dividenda::remove( name role_acct )   //!< remove one item from white_list
     check(ite != white_list.end(), "Record to remove does not exist.");
     white_list.erase(ite);
 }
-//--------------------------------------------------------------------------
+//
+//---
 
 
   /*
    +-----------------------------------
-   +  proposalnew 
+   +  removewhite -  
    +-----------------------------------
              +
-             +     Creating a new proposal
+             +  Remove completely white_list table.   
+             */
+
+[[eosio::action]]
+void dividenda::removewhite(){
+  require_auth( _self );
+  whitelist_index white_list(get_self(), get_self().value);
+  // Delete all records in _messages table
+  auto itr = white_list.begin();
+    while (itr != white_list.end()) {
+       itr = white_list.erase(itr);
+    }
+}
+//
+//---
+
+
+  /*
+   +----------------------------------------
+   +  proposalnew - 
+   +----------------------------------------
+             +
+             +     - Creating a new proposal
              */
 [[eosio::action]]
 void dividenda::proposalnew(
@@ -134,12 +170,21 @@ void dividenda::proposalnew(
         p.expires_at          = now()+EXPIRATION_PERIOD;
     });
   }    	
-} //end of action.
+} 
+//
+//---
 
 
+  /*
+   +------------------------------------
+   +  proposalvote -  
+   +------------------------------------
+             +
+             +  - voting for proposal    
+             */
 [[eosio::action]]
 void dividenda::proposalvote(  const name votername,
-                                  const uint8_t uservote    )
+                               const uint8_t uservote    )
 {       
     //---------------
     // Verify the voter who is voting right now: 
@@ -158,7 +203,7 @@ void dividenda::proposalvote(  const name votername,
         proposal_table proposal(get_self(), get_self().value);
         auto rec_itr = proposal.begin();
         check( (rec_itr != proposal.end()),    "No proposal?!"); 
-        check( (rec_itr->expires_at > now() ), "proposal already expired.");  
+        check( (rec_itr -> expires_at > now() ), "proposal already expired.");  
 
         // whitelist_index white_list(get_self(), get_self().value);                    
         auto w_itr = white_list.find(votername.value); // Is the user on the list?        
@@ -256,9 +301,9 @@ void dividenda::proposalvote(  const name votername,
             }
         } // end of voteresult!=0  
         // if voteresult==0 do nothing - voting not yet finished
-} //end.
+} 
 //
-//======================================================================
+//---
 
 
   /*
@@ -376,10 +421,6 @@ void dividenda::proposalvote(  const name votername,
     nft_table nft_register( get_self(), get_self().value );
 
     log_table log_iteration( get_self(), get_self().value );       //-- TEST --//
-    // auto il_itr  = log_iteration.begin();                       //-- TEST --//
-    // while (il_itr != log_iteration.end()) {                     //-- TEST --//
-    //  il_itr  = log_iteration.erase(il_itr);                     //-- TEST --//
-    // }                                                           //-- TEST --//
     
     double all_spendings = 0.0; ///< Total percentage to be paid for all active NFTs on actually processed iteration.   
     double dao_dividend  = 0.0; ///< Remaining leftover percentage for DAO account ( dao_dividend = 100% - all_spendings ).
@@ -540,9 +581,6 @@ void dividenda::proposalvote(  const name votername,
     }    //end of for (iter/nft_register)
     //-------------------------------- 
 
-    //Count leftover for DAO - How many percent will left for daoaccount after all the spendings. 
-    //--// dao_dividend = 100.0 - all_spendings;
-    
     // Note: DAO account ('daoaccount') is added at the end of the receiver's list.   
     //--// asset to_receive = asset(0,symbol("OPTION",4) ); 
     //--// to_receive = ( profit * (dao_dividend * 100)) / 10000; 
@@ -576,8 +614,6 @@ void dividenda::proposalvote(  const name votername,
     });                                                                     //-- TEST --//                                                        
     //--TEST --//-- TEST --//                                               //-- TEST --//
 
-
-
     //  The receivers_list table drives dividend transfers.
     //  Leftover is transferred to FreeDAO account.              
     //  The receivers_list is erased at the beginning of the action. 
@@ -600,14 +636,18 @@ void dividenda::proposalvote(  const name votername,
     
     } //for  
 
-  }  //end of action 
-//-------------------------------------------------------------------------------------
+  }  //end of action
+//   
+//---
 
-/*
-    |---------|
-    |  query  |
-    |---------|
-*/    
+  /*
+   +-----------------------------------
+   +  query -  
+   +-----------------------------------
+             +
+             +  - Gives type of wallet active account for frontend.   
+             */  
+
 // Querying account type (0-3) for the frontend to automatically display correct web page.
 // Answer is send through notify_front().   
 [[eosio::action]]
@@ -621,28 +661,34 @@ void dividenda::query( name eosaccount )
   answer = auth_vip(eosaccount);
   notify_front(answer);
 }  
-//-----------------------------------------------------------------
+//
+//---
 
-/*
-    |----------------|
-    |  dividcompute  |
-    |----------------|
-*/
-// Wrapper for replay() function to be called from outside.
+  /*
+   +-----------------------------------
+   +  dividcompute -  
+   +-----------------------------------
+             +
+             +  Wrapper for replay() function to be called from outside.   
+             */
+
 [[eosio::action]]
 void dividenda::dividcompute()
 {
   replay(); 
 }
-//------------------------------------------------------------------
+//
+//---
 
-/*  
-    |----------|
-    |  replay  |
-    |----------|
-*/    
-// The function replay (process one by one and clean up) the stack of not processed iterations. The current
-// iteration is not processed. Iteration 0 (zero) is also not proceoptionsdivssed.  
+  /*
+   +-----------------------------------
+   +  replay -  
+   +-----------------------------------
+             +
+             +  Process one by one the stack of not processed iterations.   
+             */ 
+// The current iteration is not processed. Iteration 0 (zero) is also not processed.  
+
 void dividenda::replay()
 {  
   deposit_index deposit_tbl(tokencontra, tokencontra.value);           //external deposit table 
@@ -674,7 +720,164 @@ void dividenda::replay()
     deposit_itr++;
   } //while 
 }
-//---------------------------------------------------------------------------------------
+//
+//---
+
+  /*
+   +-----------------------------------
+   +  notify_front -  
+   +-----------------------------------
+             +
+             +  Build up a queue of warning messages for frontend.    
+             */
+
+void dividenda::notify_front( uint8_t number ) 
+{
+  messages_table errortable( get_self(), get_self().value );                                  
+  auto ee = errortable.emplace( get_self(), [&](auto &e) {    
+    e.key = errortable.available_primary_key(); 
+    e.errorno = number;
+  } );                                                                                      
+} 
+//
+//---
+
+
+// Clear frontend notification buffer created previously bu notify_front    
+void dividenda::clearfront() {
+    messages_table    errortable(get_self(), get_self().value);
+    auto   rec_itr  = errortable.begin();
+    while (rec_itr != errortable.end()) {
+           rec_itr  = errortable.erase(rec_itr);
+    }
+} 
+//
+//---
+
+
+  /*
+   +-----------------------------------
+   +  propreset -  
+   +-----------------------------------
+             +
+             +  Withdraw active proposal.   
+             */
+
+[[eosio::action]] 
+void dividenda::propreset( name proposername ) {   
+  require_auth( proposername );
+  check( (auth_vip(proposername)==PROPOSER), "proposername not authorized by whitelist!" );    
+
+  // The proposer should be found and it should be first on the list. 
+  // whitelist_index white_list(get_self(), get_self().value);
+  // auto v = white_list.find(proposer.value);  // Is the proposer on the list?
+  // check( (v!=white_list.end()), "No proposer on the list?!"); 
+  // check( (v->idno==1), "On the list, but not the proposer!"); 
+  
+  //verify existence of the proposal record (if not exists create empty)
+  proposal_table proposal(get_self(), get_self().value);
+  auto pro_itr = proposal.begin();
+  if( pro_itr == proposal.end() )
+  {
+     proposal.emplace(get_self(), [&](auto &p) { // This is only first time
+        p.key                 = 1;
+        p.eosaccount          = "empty"_n; 
+        p.roi_target_cap      = 0;
+        p.proposal_percentage = 0;
+        p.threshold           = asset(0,symbol("OPTION",4) ); 
+        p.rates_left          = 0;
+        p.locked              = false;
+        p.accrued             = asset(0,symbol("OPTION",4) ); 
+        p.expires_at          = now();
+     });
+  }
+  else {
+    //auto pro_itr = proposal.begin();
+    proposal.modify(pro_itr, get_self(), [&](auto &p) {
+            p.eosaccount          = "erased"_n; 
+            p.roi_target_cap      = 0;
+            p.proposal_percentage = 0;
+            p.threshold           = asset(0,symbol("OPTION",4) ); 
+            p.locked              = false;
+            p.accrued             = asset(0,symbol("OPTION",4) ); 
+            p.expires_at          = now();
+           });
+  }           
+} 
+//
+//---
+
+  /*
+   +-----------------------------------
+   +  regchown -  
+   +-----------------------------------
+             +
+             +  Change NFT ownership.   
+             */
+
+[[eosio::action]]
+void dividenda::regchown(name userfrom, name userto, uint64_t nft_key){
+  require_auth(userfrom);
+  nft_table nft_register( get_self(), get_self().value );
+  auto pro_itr = nft_register.find(nft_key);
+  check( (pro_itr->eosaccount == userfrom ), "The NFT key does not agree with the owner account name!");
+
+  check( nft_key >= 0, "wrong or undefined NFT key"); //nft_key is used because userfrom may have several nft_register
+  check( userfrom != userto, "cannot transfer to self" );    
+  check( is_account( userto ), "userto account does not exist");
+
+  nft_register.modify(pro_itr, get_self(), [&](auto &p) {
+            p.eosaccount = userto; 
+  }); 
+}
+//
+//---
+
+  /*
+   +-----------------------------------
+   +  unlocknft - 
+   +-----------------------------------
+             +
+             +  Unlock NFT lock for the founder (only for cap=3).   
+             */
+
+[[eosio::action]]
+void dividenda::unlocknft( uint64_t nft_key ){
+  check( nft_key > 0, "wrong or undefined NFT key ('nft_key')"); //nft_key is used because userfrom may have several nft_register
+  // authorization is actually for proposer 
+  whitelist_index white_list(get_self(), get_self().value);
+     auto prx  = white_list.get_index<"byidno"_n>();
+     auto itrx = prx.find( 1 );
+  require_auth( itrx->user ); // The proposer is first on the whitelist. 
+
+  nft_table nft_register( get_self(), get_self().value );
+  auto pro_itr = nft_register.find(nft_key);
+  if ( pro_itr->roi_target_cap == VERTICAL ){ // this should only work for cap=3  
+  nft_register.modify(pro_itr, get_self(), [&](auto &p) {
+            p.locked = false;  
+  }); }
+  else notify_front( NON_FOUNDER ); // notify frontend: 'action ignored: trying to unlock non-founder account'. 
+}
+//
+//---
+
+
+
+/*
+    TEST ACTIONS AND FUNCTIONS to be deleted for production
+*/
+
+
+//TESTS ONLY: removes logs table
+[[eosio::action]]
+void dividenda::removelogs(){
+  require_auth( _self );
+log_table log_iteration( get_self(), get_self().value );    //-- TEST --//
+auto il_itr  = log_iteration.begin();                       //-- TEST --//
+while (il_itr != log_iteration.end()) {                     //-- TEST --//
+  il_itr  = log_iteration.erase(il_itr);                    //-- TEST --//
+}                         
+}  // end of TEST 
 
 //TESTS ONLY: removes all NFTs from nft_register 
 [[eosio::action]]
@@ -739,148 +942,3 @@ void dividenda::votesreset11(){
        }); 
    }
 } //end of TEST
-//
-//---------------------------------------------------------------------
-
-/*
----------------------------------------------------
-   errortable - keep warning queues for frontend 
----------------------------------------------------
-*/
-void dividenda::notify_front( uint8_t number ) 
-{
-  messages_table errortable( get_self(), get_self().value );                                  
-  auto ee = errortable.emplace( get_self(), [&](auto &e) {    
-    e.key = errortable.available_primary_key(); 
-    e.errorno = number;
-  } );                                                                                      
-} //end of.
-
-// Clear frontend notification buffer    
-void dividenda::clearfront() {
-    messages_table    errortable(get_self(), get_self().value);
-    auto   rec_itr  = errortable.begin();
-    while (rec_itr != errortable.end()) {
-           rec_itr  = errortable.erase(rec_itr);
-    }
-} 
-//
-//---
-
-/*
-------------------------------------------
-   propreset - Withdraw active proposal  
-------------------------------------------
-*/
-[[eosio::action]] 
-void dividenda::propreset( name proposername ) {   
-  require_auth( proposername );
-  check( (auth_vip(proposername)==PROPOSER), "proposername not authorized by whitelist!" );    
-
-  // The proposer should be found and it should be first on the list. 
-  // whitelist_index white_list(get_self(), get_self().value);
-  // auto v = white_list.find(proposer.value);  // Is the proposer on the list?
-  // check( (v!=white_list.end()), "No proposer on the list?!"); 
-  // check( (v->idno==1), "On the list, but not the proposer!"); 
-  
-  //verify existence of the proposal record (if not exists create empty)
-  proposal_table proposal(get_self(), get_self().value);
-  auto pro_itr = proposal.begin();
-  if( pro_itr == proposal.end() )
-  {
-     proposal.emplace(get_self(), [&](auto &p) { // This is only first time
-        p.key                 = 1;
-        p.eosaccount          = "empty"_n; 
-        p.roi_target_cap      = 0;
-        p.proposal_percentage = 0;
-        p.threshold           = asset(0,symbol("OPTION",4) ); 
-        p.rates_left          = 0;
-        p.locked              = false;
-        p.accrued             = asset(0,symbol("OPTION",4) ); 
-        p.expires_at          = now();
-     });
-  }
-  else {
-    //auto pro_itr = proposal.begin();
-    proposal.modify(pro_itr, get_self(), [&](auto &p) {
-            p.eosaccount          = "erased"_n; 
-            p.roi_target_cap      = 0;
-            p.proposal_percentage = 0;
-            p.threshold           = asset(0,symbol("OPTION",4) ); 
-            p.locked              = false;
-            p.accrued             = asset(0,symbol("OPTION",4) ); 
-            p.expires_at          = now();
-           });
-  }           
-} //prop_reset
-//------------------------------------------------------------------
-
-/*
-    |------------------------------------|
-    |  regchown - Change nft ownership   |
-    |------------------------------------|
-*/
-[[eosio::action]]
-void dividenda::regchown(name userfrom, name userto, uint64_t nft_key){
-  require_auth(userfrom);
-  nft_table nft_register( get_self(), get_self().value );
-  auto pro_itr = nft_register.find(nft_key);
-  check( (pro_itr->eosaccount == userfrom ), "The NFT key does not agree with the owner account name!");
-
-  check( nft_key >= 0, "wrong or undefined NFT key"); //nft_key is used because userfrom may have several nft_register
-  check( userfrom != userto, "cannot transfer to self" );    
-  check( is_account( userto ), "userto account does not exist");
-
-  nft_register.modify(pro_itr, get_self(), [&](auto &p) {
-            p.eosaccount = userto; 
-  }); 
-}
-//--------------------------------------------------------------------
-
-// Unlock nft for founder (only for cap=3) 
-[[eosio::action]]
-void dividenda::unlocknft( uint64_t nft_key ){
-  check( nft_key > 0, "wrong or undefined NFT key ('nft_key')"); //nft_key is used because userfrom may have several nft_register
-  // authorization is actually for proposer 
-     whitelist_index white_list(get_self(), get_self().value);
-     auto prx  = white_list.get_index<"byidno"_n>();
-     auto itrx = prx.find( 1 );
-     require_auth( itrx->user ); // The proposer is first on the whitelist. 
-  // require_auth( get_self() ); it was an authorization for contract owner
-
-  //require_auth(proposername);
-  //check( (auth_vip(proposername)==PROPOSER), "proposername not authorized by whitelist!" );
-
-  nft_table nft_register( get_self(), get_self().value );
-  auto pro_itr = nft_register.find(nft_key);
-  if ( pro_itr->roi_target_cap == VERTICAL ){ // this should only work for cap=3  
-  nft_register.modify(pro_itr, get_self(), [&](auto &p) {
-            p.locked = false;  
-  }); }
-  else notify_front( NON_FOUNDER ); // notify frontend: 'action ignored: trying to unlock non-founder account'. 
-}
-
-// Remove the logs table - TEST
-[[eosio::action]]
-void dividenda::removelogs(){
-  require_auth( _self );
-log_table log_iteration( get_self(), get_self().value );    //-- TEST --//
-auto il_itr  = log_iteration.begin();                       //-- TEST --//
-while (il_itr != log_iteration.end()) {                     //-- TEST --//
-  il_itr  = log_iteration.erase(il_itr);                    //-- TEST --//
-}                         
-}         
-
-
-// Remove whitelist table
-[[eosio::action]]
-void dividenda::removewhite(){
-  require_auth( _self );
-  whitelist_index white_list(get_self(), get_self().value);
-  // Delete all records in _messages table
-  auto itr = white_list.begin();
-    while (itr != white_list.end()) {
-       itr = white_list.erase(itr);
-    }
-}
-
