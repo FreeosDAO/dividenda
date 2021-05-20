@@ -21,7 +21,7 @@ enum roi_target_cap { ITERATION=1, HORIZONTAL=2, VERTICAL=3 };
 
 // Account names used in the code: 
 const std::string freeos_acct       = "freeosa";
-const name tokencontra              = "freeosa"_n;          ///< Token contract (for inline transfers)   // freeostokena (??) 
+const name tokencontra              = "freeosa"_n;          ///< Token contract (for inline transfers)   
 const name this_account             = "optionsdiva"_n;  
 
 const std::string freeosconfig_acct = "freeoscfga";         // Tom's configuration contract 
@@ -40,5 +40,5 @@ const int NFT_MINTED        = 4; // '4 - Info: proposal accepted and saved. nft 
 const int NFT_REFUSED       = 5; // '5 - Action ignored: proposal not accepted in voting'               yellow
 const int NFT_CHOWN         = 6; // '6 - ONFT ownership change'                                         green
 const int ITERATION_ZERO    = 7; // '7 - warning on iteration zero when mint NFT                        yellow 
-// Note: If number received here is above 100 this is the answer for the software version query. TESTS ONLY 
+
 

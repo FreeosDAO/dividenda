@@ -4,16 +4,6 @@
     "types": [],
     "structs": [
         {
-            "name": "clear",
-            "base": "",
-            "fields": []
-        },
-        {
-            "name": "clear1",
-            "base": "",
-            "fields": []
-        },
-        {
             "name": "deposit",
             "base": "",
             "fields": [
@@ -93,52 +83,6 @@
                 {
                     "name": "tokens_required",
                     "type": "uint16"
-                }
-            ]
-        },
-        {
-            "name": "log_struct",
-            "base": "",
-            "fields": [
-                {
-                    "name": "log_key",
-                    "type": "uint64"
-                },
-                {
-                    "name": "log_iter",
-                    "type": "uint64"
-                },
-                {
-                    "name": "log_receiver",
-                    "type": "name"
-                },
-                {
-                    "name": "log_cap",
-                    "type": "uint8"
-                },
-                {
-                    "name": "log_percent",
-                    "type": "float64"
-                },
-                {
-                    "name": "log_threshold",
-                    "type": "asset"
-                },
-                {
-                    "name": "log_accrued",
-                    "type": "asset"
-                },
-                {
-                    "name": "log_ratesleft",
-                    "type": "uint32"
-                },
-                {
-                    "name": "log_nft_key",
-                    "type": "uint64"
-                },
-                {
-                    "name": "log_transf",
-                    "type": "asset"
                 }
             ]
         },
@@ -337,21 +281,6 @@
             ]
         },
         {
-            "name": "removelogs",
-            "base": "",
-            "fields": []
-        },
-        {
-            "name": "removeonenft",
-            "base": "",
-            "fields": [
-                {
-                    "name": "nftx_id",
-                    "type": "uint64"
-                }
-            ]
-        },
-        {
             "name": "removewhite",
             "base": "",
             "fields": []
@@ -400,11 +329,6 @@
             "fields": []
         },
         {
-            "name": "votesreset11",
-            "base": "",
-            "fields": []
-        },
-        {
             "name": "whitelist_struct",
             "base": "",
             "fields": [
@@ -421,24 +345,9 @@
                     "type": "uint8"
                 }
             ]
-        },
-        {
-            "name": "zerofortest",
-            "base": "",
-            "fields": []
         }
     ],
     "actions": [
-        {
-            "name": "clear",
-            "type": "clear",
-            "ricardian_contract": ""
-        },
-        {
-            "name": "clear1",
-            "type": "clear1",
-            "ricardian_contract": ""
-        },
         {
             "name": "dividcompute",
             "type": "dividcompute",
@@ -480,16 +389,6 @@
             "ricardian_contract": ""
         },
         {
-            "name": "removelogs",
-            "type": "removelogs",
-            "ricardian_contract": ""
-        },
-        {
-            "name": "removeonenft",
-            "type": "removeonenft",
-            "ricardian_contract": ""
-        },
-        {
             "name": "removewhite",
             "type": "removewhite",
             "ricardian_contract": ""
@@ -508,16 +407,6 @@
             "name": "version",
             "type": "version",
             "ricardian_contract": "**PARAMETERS:**\n\nNONE\n\n**INTENT:** Display contract version.\n\n**TERM:**  TBA"
-        },
-        {
-            "name": "votesreset11",
-            "type": "votesreset11",
-            "ricardian_contract": ""
-        },
-        {
-            "name": "zerofortest",
-            "type": "zerofortest",
-            "ricardian_contract": ""
         }
     ],
     "tables": [
@@ -545,13 +434,6 @@
         {
             "name": "iterations",
             "type": "iteration",
-            "index_type": "i64",
-            "key_names": [],
-            "key_types": []
-        },
-        {
-            "name": "logs",
-            "type": "log_struct",
             "index_type": "i64",
             "key_names": [],
             "key_types": []

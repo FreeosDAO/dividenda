@@ -1,24 +1,33 @@
 var indexSectionsWithContent =
 {
-  0: "cdnpqruv",
-  1: "cdnpqruv",
-  2: "r",
-  3: "d"
+  0: "acdfhinpqrtuv",
+  1: "d",
+  2: "cdnpqruv",
+  3: "adfintuv",
+  4: "r",
+  5: "hipv",
+  6: "d"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "functions",
-  2: "enums",
-  3: "groups"
+  1: "files",
+  2: "functions",
+  3: "variables",
+  4: "enums",
+  5: "enumvalues",
+  6: "groups"
 };
 
 var indexSectionLabels =
 {
   0: "All",
-  1: "Functions",
-  2: "Enumerations",
-  3: "Modules"
+  1: "Files",
+  2: "Functions",
+  3: "Variables",
+  4: "Enumerations",
+  5: "Enumerator",
+  6: "Modules"
 };
 

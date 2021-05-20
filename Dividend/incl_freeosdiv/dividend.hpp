@@ -29,7 +29,7 @@ const std::string freeosconfig_acct = "freeoscfgd"; // Tom's configuration contr
 
 
 symbol_code freeos = symbol_code("FREEOS");
-const name tokencontra   = "freeosd"_n;          ///< Token contract (for inline transfers)    // freeostokend (??) 
+const name tokencontra   = "freeosd"_n;          ///< Token contract (for inline transfers)    
 const name daoaccount    = "freeosdaodao"_n;     ///< Organizational target DAO account
 const name this_account  = "freeosdiv"_n;  
 
@@ -44,5 +44,5 @@ const int NFT_MINTED        = 4; // '4 - Info: proposal accepted and saved. nft 
 const int NFT_REFUSED       = 5; // '5 - Action ignored: proposal not accepted in voting'               yellow
 const int NFT_CHOWN         = 6; // '6 - ONFT ownership change'                                         green
 const int ITERATION_ZERO    = 7; // '7 - warning on iteration zero when mint NFT                        yellow 
-// Note: If number received here is above 100 this is the answer for the software version query. TESTS ONLY 
+
 

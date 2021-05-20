@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['clear_0',['clear',['../group__dividenda.html#ga8b48eba57ecf5c809de3cd698e612651',1,'dividenda.cpp']]],
-  ['clear1_1',['clear1',['../group__dividenda.html#ga425e00ebe8ac8f93b113c8c709a69044',1,'dividenda.cpp']]],
-  ['clearfront_2',['clearfront',['../group__dividenda.html#gaf93fbfd3f7c04f236c6636d4fb14c442',1,'dividenda.cpp']]]
+  ['action_5fignored_0',['ACTION_IGNORED',['../dividend_8hpp.html#a639fc45c97f52f724bf814c8efa981cd',1,'dividend.hpp']]]
 ];

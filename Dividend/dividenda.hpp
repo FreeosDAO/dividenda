@@ -4,7 +4,6 @@
 #include <eosio/system.hpp>
 #include <eosio/time.hpp>
 #include <math.h>
-// #include "tests.hpp"  // include file with tests only - remove for production
 #include "freeos.hpp"       
 #include "dividend.hpp"     // Must be dividend.hpp - not dividenda :)
 
@@ -194,44 +193,9 @@ CONTRACT dividenda : public contract {
     */
     [[eosio::action]]
     void dividcompute();
-
-   /**
-    * clear action       TEST!!!
-    *
-    * @details TEST ONLY: zeroes the 'receivers_list' table without erasing it (no RAM released)
-    *
-    * @brief Warning: Note that all TEST functions are accessing the tables outside of a normally provided sequence of actions.
-    * The testing function used incorrectly may cause unpredictable results. The TEST functions will be removed in production. 
-    *
-    * @pre 
-    */  
-   [[eosio::action]]
-   void clear();                                 
+          
     
-
-   /**
-    * clear1 action      TEST!!!
-    *
-    * @details TEST ONLY: Completely erase 'receivers_list' table.
-    * 
-    * @brief Warning: Note that all TEST functions are accessing the tables outside of a normally provided sequence of actions.
-    * The testing function used incorrectly may cause unpredictable results. The TEST functions will be removed in production. 
-    *
-    */ 
-   [[eosio::action]]
-   void clear1();  
-
-   [[eosio::action]]
-   void removelogs(); // TEST - removes logs table 
-
-    /**
-     * votesreset11 action       TEST 
-     *
-     * @details TEST ONLY: Clean up the voting results (last column in 'whitelist' table).
-     *
-     */
-    [[eosio::action]]    
-    void votesreset11();                          
+                         
 
     /**
      * unlocknftx action      
@@ -262,18 +226,7 @@ CONTRACT dividenda : public contract {
     [[eosio::action]]
     void query( name eosaccount ); 
 
-  
-
-    /* not in the doxygen intentionally 
-     * zerofortest action        TEST!!!
-     *
-     * @details TEST ONLY: Removes all nfts from the 'nft table'.
-     * @brief Warning: Note that all TEST functions are accessing the tables outside of a normally provided sequence of actions.
-     * The testing function used incorrectly may cause unpredictable results. The TEST functions will be removed in production. 
-     *
-     */
-    [[eosio::action]] 
-    void zerofortest();                
+              
   
     // helper functions used only internally 
 
@@ -293,18 +246,7 @@ CONTRACT dividenda : public contract {
      * Called when new proposal is created.
      */
     void clearfront();  
-
-
-   /**
-    * removeonenft action      TEST!!!
-    * @details removes selected one nft with nftx_id given as a parameter.
-    * @param 
-    * @brief Warning: Note that all TEST functions are accessing the tables outside of a normally provided sequence of actions.
-    * The testing function used incorrectly may cause unpredictable results. The TEST functions will be removed in production. 
-    */ 
-    [[eosio::action]]
-    void removeonenft(uint64_t nftx_id); 
-  
+ 
   
    /**
     * action version
@@ -373,22 +315,6 @@ CONTRACT dividenda : public contract {
       uint64_t primary_key() const {return nft_key;}
   };
   using nft_table = eosio::multi_index<"nfts"_n, nft_struct>; 
-
-
-  TABLE log_struct {   // dtructure for tracking dividend distributions by iterations //-- TEST --//
-    uint64_t log_key;                                                                 //-- TEST --//
-    uint64_t log_iter;                                                                //-- TEST --//
-    name     log_receiver;                                                            //-- TEST --//
-    uint8_t  log_cap;                                                                 //-- TEST --//
-    double   log_percent;                                                             //-- TEST --//
-    asset    log_threshold;                                                           //-- TEST --//
-    asset    log_accrued;                                                             //-- TEST --//
-    uint32_t log_ratesleft;                                                           //-- TEST --//
-    uint64_t log_nft_key;                                                             //-- TEST --//
-    asset    log_transf;                                                              //-- TEST --//
-    uint64_t primary_key() const {return log_key;}                                    //-- TEST --//
-  };                                                                                  //-- TEST --// 
-  using log_table = eosio::multi_index<"logs"_n, log_struct>;                         //-- TEST --//
 
 
   TABLE whitelist_struct {                 //!< whitelist_struct - List of allowed proposers and voters along with their vote.

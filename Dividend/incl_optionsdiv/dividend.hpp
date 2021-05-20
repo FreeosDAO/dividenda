@@ -1,22 +1,7 @@
 // current version string:
-const std::string VERSION = "Version = 139 QA2"; 
+const std::string VERSION = "Version = 140 QA2"; 
 
-//"Ver 139, 21th May, 2021; QA2";
-
-// Versions description and CHANGE LOG
- 
-// 130 - identification function auth_vip to identify members of whitelist table. Changes in names. 20th Apr.
-// 131 - added upsert_value and upsert_perc also two 
-//       secondary index search verification 
-// 132 - optionsdiv freeos freeosconfig allocate 28 04 2021 Changed external naming convention
-// 133 - detour around 'replay' allowing minting NFT when iteration zero
-// 134 - the same source code is used since now for all the environments - only dividend.hpp has different external file references for all environments
-// 135 - corrected permissions for various different environments
-// 136 - change in counting remaining tokens for DAO account - corrections by using the thresholds of cap=2 and cap=3 when applicable.
-//       adding iterationlog table showing the details of processing the deposits table in a form of spreedsheet. There is no test actions
-//       to manipulate this table provided. The table will only contain passive data tracking the process of 'dividendcvompute'. 13 May 21.
-// 137 - minor updates for logs table
-// 138 - further improvements for logs
+//"Ver 140, 21th May, 2021; QA2";
 
 constexpr static uint64_t EXPIRATION_PERIOD = 60 * 60;  ///< default time limit for NFT proposal voting - one hour in seconds. 
 // const static double ACC_MARGIN =  0.0;  // margin - % of 'dust' left on freeosdivide account for freeosdaodao transaction. 

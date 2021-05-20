@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['query_10',['query',['../group__dividenda.html#ga66be7bbc6cc74c5d567dabb390f90868',1,'dividenda.cpp']]]
+  ['horizontal_13',['HORIZONTAL',['../dividend_8hpp.html#ga943a308f745ea7ddc590893803538b3ba4dd51ad73508d6fc83a502966779e48e',1,'dividend.hpp']]]
 ];
