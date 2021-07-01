@@ -316,8 +316,8 @@ void dividenda::proposalvote(  const name votername,
   [[eosio::action]]
   void dividenda::dryrun( name proposername)   
   {
-    require_auth( proposername );
-    check( (auth_vip(proposername)==PROPOSER), "proposername not authorized by whitelist!" );
+    // require_auth( proposername );
+    // check( (auth_vip(proposername)==PROPOSER), "proposername not authorized by whitelist!" );
   
     // list_by_user - cumulative percentage paid for all active NFTs listed by user
     dryrun_data  list_by_user( get_self(), get_self().value );                                                                                         
