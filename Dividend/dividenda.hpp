@@ -148,7 +148,7 @@ CONTRACT dividenda : public contract {
      *
      * @details Removes the white_list table.
      * @brief This action should be considered to run only in testing or in case of administrative
-     * changes in OPTIONSDAO. 
+     * changes in SDAO. 
      *
      * @pre requires contract permission
      */
@@ -289,7 +289,7 @@ CONTRACT dividenda : public contract {
 
   TABLE proposal_struct {                     
       uint64_t key;                       //!< primary key = always 1.
-      name eosaccount;                    //!< OPTIONS account used to receive dividends and for identification
+      name eosaccount;                    //!< POINT account used to receive dividends and for identification
       uint8_t roi_target_cap;             //!< =1 iterative cap, =2 horizontal, =3 vertical
       double proposal_percentage;         //!< iteration percentage (for each iteration is the same)
       bool locked;                        //!< lock dividends for selected new members. Note: When unlock cannot be locked again.
@@ -304,14 +304,14 @@ CONTRACT dividenda : public contract {
 
   TABLE nft_struct {                        //!< Each record is a single NFT by itself
       uint64_t nft_key;
-      name     eosaccount;                  //!< OPTIONS account used to receive dividends and for identification (as a secondary key)
+      name     eosaccount;                  //!< POINT account used to receive dividends and for identification (as a secondary key)
       uint8_t  roi_target_cap;              //!< 1- iterative 2- horizontal 3- vertical 
       double   nft_percentage;              //!< Only this is used for counting dividend to pay - the other parameters examine eligibility,
       time_point_sec mint_date;             //!< NFT mint date. In fact, the current date of the moment when this nftx record was created,
       bool     locked;                      //!< lock dividends for selected new members. Note: When unlock should be not lock again.
-      asset    threshold = asset(0,symbol("OPTION",4) ); //!< max total divident (2) for horizontal cap or max weekly dividend for vertical (3) cap
+      asset    threshold = asset(0,symbol("POINT",4) ); //!< max total divident (2) for horizontal cap or max weekly dividend for vertical (3) cap
       uint32_t rates_left;                  //!< count down payments left in iteration cap=1 only   
-      asset    accrued = asset(0,symbol("OPTION",4) ); ;                       
+      asset    accrued = asset(0,symbol("POINT",4) ); ;                       
       uint64_t primary_key() const {return nft_key;}
   };
   using nft_table = eosio::multi_index<"nfts"_n, nft_struct>; 
@@ -330,7 +330,7 @@ CONTRACT dividenda : public contract {
 
   TABLE recive_struct {
       name     user;
-      asset    to_receive;  //!<This is a cumulative amount of OPTION tokens which will be paid to the user on a basis of all owned nfts. 
+      asset    to_receive;  //!<This is a cumulative amount of POINT tokens which will be paid to the user on a basis of all owned nfts. 
       uint64_t primary_key() const {return user.value; }
   };
   using recive_index = eosio::multi_index<"recives"_n, recive_struct>;  
@@ -434,7 +434,7 @@ void upsert_value( name user, asset to_receive ){ // This replaces identical pie
   {
     receivers_list.emplace( get_self(), [&]( auto& row ){
     row.user = user;
-    row.to_receive = asset(0,symbol("OPTION",4) ); // typecast for asset
+    row.to_receive = asset(0,symbol("POINT",4) ); // typecast for asset
     row.to_receive = to_receive;
     });
   }
@@ -480,7 +480,7 @@ void upsert_perc(uint8_t cap_type, name user, double nft_percentage ) //This rep
 
     
 };
-/** @}*/ // end of @defgroup dividenda OPTIONSsivide contract
+/** @}*/ // end of @defgroup dividenda freeosdivide contract
 
 
         

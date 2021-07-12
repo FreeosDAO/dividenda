@@ -101,7 +101,7 @@ void dividenda::removewhite(){
 [[eosio::action]]
 void dividenda::proposalnew(
   		  const name      proposername,
-        const name      eosaccount,          //!< OPTION account used to receive dividends and for user identification
+        const name      eosaccount,          //!< POINT account used to receive dividends and for user identification
         const uint8_t   roi_target_cap,      // 1-(I)teration, 2-(H)orizontal, 3-(V)ertical
         const double    proposal_percentage,
         const asset     threshold,           // max value for total (cap=2) or weekly (cap=3) pay-cut actions
@@ -121,8 +121,8 @@ void dividenda::proposalnew(
   check( (proposal_percentage >0 && proposal_percentage <100),  "The proposal_percentage out of range!" );
   check( is_account( eosaccount ), "eosaccount does not exist!"); 
   auto sym = threshold.symbol; 
-  auto obj = symbol( "OPTION", 4);
-  check( (sym==obj), "The symbol is not OPTION!");
+  auto obj = symbol( "POINT", 4);
+  check( (sym==obj), "The symbol is not POINT!");
   if (roi_target_cap==ITERATION) check( (rates_left>0), "This is Iteration Cap(1), rates_left should be above zero!");
   if (roi_target_cap!=ITERATION) check( threshold.amount > 0, "Must enter positive threshold!" );
   if ( locked ) check( roi_target_cap==VERTICAL, "Only Vertical Cap can be locked!" );
@@ -149,7 +149,7 @@ void dividenda::proposalnew(
         p.threshold           = threshold;
         p.rates_left          = rates_left;
         p.locked              = locked;
-        p.accrued             = asset(0,symbol("OPTION",4) ); 
+        p.accrued             = asset(0,symbol("POINT",4) ); 
         p.expires_at          = now()+EXPIRATION_PERIOD;
      });
 	}
@@ -166,7 +166,7 @@ void dividenda::proposalnew(
         p.threshold           = threshold;
         p.rates_left          = rates_left; 
         p.locked              = locked;
-        p.accrued             = asset(0,symbol("OPTION",4) ); 
+        p.accrued             = asset(0,symbol("POINT",4) ); 
         p.expires_at          = now()+EXPIRATION_PERIOD;
     });
   }    	
@@ -284,10 +284,10 @@ void dividenda::proposalvote(  const name votername,
               p.eosaccount          = "empty"_n; 
               p.roi_target_cap      = 0;
               p.proposal_percentage = 0.0;
-              p.threshold           = asset(0,symbol("OPTION",4) ); 
+              p.threshold           = asset(0,symbol("POINT",4) ); 
               p.rates_left          = 0;
               p.locked              = true;
-              p.accrued             = asset(0,symbol("OPTION",4) ); 
+              p.accrued             = asset(0,symbol("POINT",4) ); 
               p.expires_at          = now();
             });
 
@@ -450,8 +450,8 @@ void dividenda::proposalvote(  const name votername,
             uint64_t nftkey         = iter->nft_key; //-- TEST --//
 
           // Count how much to pay for this NFT to the current user 
-      // in OPTION tokens:
-      asset to_receive = asset(0,symbol("OPTION",4) ); 
+      // in POINT tokens:
+      asset to_receive = asset(0,symbol("POINT",4) ); 
       to_receive = ( profit * (nft_percentage * 100)) / 10000; 
 
       switch( cap_type ) 
@@ -485,8 +485,8 @@ void dividenda::proposalvote(  const name votername,
               // all_spendings += nft_percentage;
 
                 // correct payment if last (reduce to_receive)                                          
-                asset overpayment = asset(0,symbol("OPTION",4) );   
-                asset simulated   = asset(0,symbol("OPTION",4) );
+                asset overpayment = asset(0,symbol("POINT",4) );   
+                asset simulated   = asset(0,symbol("POINT",4) );
                 //simulated.amount  = (accrued.amount + to_receive.amount)/10000;
                 simulated  = accrued + to_receive;
 
@@ -536,14 +536,14 @@ void dividenda::proposalvote(  const name votername,
     //-------------------------------- 
 
     // Note: DAO account ('daoaccount') is added at the end of the receiver's list.   
-    //--// asset to_receive = asset(0,symbol("OPTION",4) ); 
+    //--// asset to_receive = asset(0,symbol("POINT",4) ); 
     //--// to_receive = ( profit * (dao_dividend * 100)) / 10000; 
     auto idx = receivers_list.find(daoaccount.value); 
     if( idx == receivers_list.end() )
     {
       receivers_list.emplace( get_self(), [&]( auto& row ){
         row.user = daoaccount;
-        row.to_receive = asset(0,symbol("OPTION",4) ); 
+        row.to_receive = asset(0,symbol("POINT",4) ); 
         row.to_receive = pay_to_dao;
       });
     }
@@ -562,7 +562,7 @@ void dividenda::proposalvote(  const name votername,
     for (auto idx = receivers_list.begin(); idx != receivers_list.end(); idx++)
     {
         name user = idx->user;
-        asset quantity = asset(0,symbol("OPTION",4) ); 
+        asset quantity = asset(0,symbol("POINT",4) ); 
         quantity = idx->to_receive; 
         std::string memo = std::string("period: ")+std::to_string( iter_point )+std::string(" dividend.");
         if(quantity.amount>0){
@@ -725,10 +725,10 @@ void dividenda::propreset( name proposername ) {
         p.eosaccount          = "empty"_n; 
         p.roi_target_cap      = 0;
         p.proposal_percentage = 0;
-        p.threshold           = asset(0,symbol("OPTION",4) ); 
+        p.threshold           = asset(0,symbol("POINT",4) ); 
         p.rates_left          = 0;
         p.locked              = false;
-        p.accrued             = asset(0,symbol("OPTION",4) ); 
+        p.accrued             = asset(0,symbol("POINT",4) ); 
         p.expires_at          = now();
      });
   }
@@ -738,9 +738,9 @@ void dividenda::propreset( name proposername ) {
             p.eosaccount          = "erased"_n; 
             p.roi_target_cap      = 0;
             p.proposal_percentage = 0;
-            p.threshold           = asset(0,symbol("OPTION",4) ); 
+            p.threshold           = asset(0,symbol("POINT",4) ); 
             p.locked              = false;
-            p.accrued             = asset(0,symbol("OPTION",4) ); 
+            p.accrued             = asset(0,symbol("POINT",4) ); 
             p.expires_at          = now();
            });
   }           
