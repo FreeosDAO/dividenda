@@ -25,10 +25,8 @@ enum roi_target_cap { ITERATION=1, HORIZONTAL=2, VERTICAL=3 };
 
 // Account names used in the code: 
 const std::string freeos_acct       = "freeosclaim";
-const std::string freeosconfig_acct = "freeoscfgd"; // Tom's configuration contract 
+const std::string freeosconfig_acct = "freeoscfg"; // Tom's configuration contract 
 
-
-symbol_code freeos = symbol_code("FREEOS");
 const name tokencontra   = "freeosclaim"_n;          ///< Token contract (for inline transfers)    
 const name daoaccount    = "freedaofdn"_n;     ///< Organizational target DAO account
 const name this_account  = "freeosdivide"_n;  
