@@ -1,0 +1,21 @@
+{
+  "main": "src/freeosdivide.cpp",
+  "contract": "freeosdivide",
+  "include": "",
+  "resource": "",
+  "cdt": false,
+  "output": "",
+  "scripts": {
+    "build": ""
+  },
+  "deploy": {
+    "target": "both",
+    "mainnet": "",
+    "kylin": "",
+    "jungle": "",
+    "local": ""
+  },
+  "test": {
+    "npmClient": ""
+  }
+}

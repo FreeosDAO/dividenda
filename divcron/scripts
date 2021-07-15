@@ -1,0 +1,29 @@
+eosio-cpp -abigen divcron.cpp -o=divcron/divcron/divcron.wasm -I=include
+
+proton1 set contract divcron /home/andyb/divcron/divcron -p divcron
+
+proton1 set account permission divcron active --add-code
+
+proton1 push transaction '{
+  "actions": [
+    {
+      "account": "cron",
+      "name": "addcron",
+      "data": {
+        "account": "freeosdivide",
+        "contract": "cron",
+        "last_process": "1970-01-01T00:26:50.347",
+        "seconds_interval": 600 
+      },
+      "authorization": [
+        {
+          "actor": "freeosdivide",
+          "permission": "active"
+        }
+      ]
+    }
+  ]
+}'
+
+
+proton1 push action eosio buyram '["divcron", "divcron", "2000.0000 XPR"]' -p divcron@active
