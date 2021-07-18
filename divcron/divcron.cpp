@@ -12,6 +12,10 @@ ACTION divcron::cron() {
         calldividend.send();
   }
 
+ACTION divcron::version() {
+      std::string version_message = "Pointed to: " + freeos_contr;
+      check(false, version_message);
+}
 
 
 

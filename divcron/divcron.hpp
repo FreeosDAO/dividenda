@@ -9,7 +9,10 @@ CONTRACT divcron : public contract {
 
     [[eosio::action]]
     void cron();
+    
+    [[eosio::action]]
+    void version();
 
-    const std::string freeos_contr = "optionsdivu";
+    const std::string freeos_contr = "optionsdiv4";
 
 };

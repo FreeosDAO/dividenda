@@ -1,6 +1,6 @@
 eosio-cpp -abigen divcron.cpp -o=divcron/divcron/divcron.wasm -I=include
 
-proton1 set contract divcron /home/andyb/divcron/divcron -p divcron
+proton1 set contract divcron /home/andyb/dividenda/divcron/divcron/divcron -p divcron
 
 proton1 set account permission divcron active --add-code
 

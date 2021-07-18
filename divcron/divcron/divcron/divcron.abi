@@ -7,12 +7,22 @@
             "name": "cron",
             "base": "",
             "fields": []
+        },
+        {
+            "name": "version",
+            "base": "",
+            "fields": []
         }
     ],
     "actions": [
         {
             "name": "cron",
             "type": "cron",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "version",
+            "type": "version",
             "ricardian_contract": ""
         }
     ],
