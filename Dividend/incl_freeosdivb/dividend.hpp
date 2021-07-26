@@ -24,12 +24,12 @@ enum role_type { PROPOSER=1, VOTER1=2, VOTER2=3};
 enum roi_target_cap { ITERATION=1, HORIZONTAL=2, VERTICAL=3 };
 
 // Account names used in the code: 
-const std::string freeos_acct       = "statsb";
-const std::string freeosconfig_acct = "statscfg"; // Tom's configuration contract 
+const std::string freeos_acct       = "freeosclaimb";
+const std::string freeosconfig_acct = "freeoscfgb";   // Tom's configuration contract 
 
-const name tokencontra   = "statsb"_n;          ///< Token contract (for inline transfers)    
-const name daoaccount    = "freedao"_n;     ///< Organizational target DAO account
-const name this_account  = "statsdiv"_n;  
+const name tokencontra   = "freeosclaimb"_n;          ///< Token contract (for inline transfers)    
+const name daoaccount    = "freedaob"_n;              ///< Organizational target DAO account
+const name this_account  = "freeosdivb"_n;  
 
 //                          Non-catastrophic frontend warnings used in 'messages' (notify_front)
 //                          Pre-defined messages to be interpreted by the frontend.
