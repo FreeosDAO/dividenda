@@ -7,11 +7,11 @@ Changes after last audit:
 750 - 758 clean partial voting results when proposal cancelled. (So called 2nd voter issue)
  22 Feb 2022 3:34 pm by AZ
  
-andy@andy-front:~/devel-allocate/dividenda/Dividend/depl_freeosdivide/dividenda$ sha256sum dividenda.wasm
+andy@andy-front:~/devel-allocate/dividenda/Dividend/depl_freeosdivide/dividenda$ 
 
-24e296e7331c88f1b72c96eeacb57b3896a59cf7c8771b7f8053ad4633d006c9  dividenda.wasm
+d5e52c4dceb0ec28a66fd09cbf248a1905f69b24f48bae92d21ee09cc77e4afa  dividenda.abi
+c645ecbd1539acd1effbc8ad765b91f1f79dc50f6fcef8bccf27bcd98e98869b  dividenda.wasm
 
-andy@andy-front:~/devel-allocate/dividenda/Dividend/depl_freeosdivide/dividenda$ sha256sum dividenda.abi
+Compiled by eosio.cdt_1.7
 
-a3c709e9c622a19ccabc9599866973cae6d15c3e08f54de380355f2caa53c05a  dividenda.abi
 
