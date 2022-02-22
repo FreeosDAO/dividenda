@@ -1,1 +1,4 @@
 first
+
+
+cleos -u https://protontestnet.greymass.com set contract freeosdiv5 /home/andy/devel-allocate/dividenda dividenda.wasm dividenda.abi 

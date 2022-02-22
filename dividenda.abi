@@ -1,0 +1,492 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "deposit",
+            "base": "",
+            "fields": [
+                {
+                    "name": "iteration",
+                    "type": "uint64"
+                },
+                {
+                    "name": "accrued",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "dividcompute",
+            "base": "",
+            "fields": []
+        },
+        {
+            "name": "dryrun",
+            "base": "",
+            "fields": [
+                {
+                    "name": "proposername",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "dryrun_struct",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "byusertotal",
+                    "type": "float64"
+                }
+            ]
+        },
+        {
+            "name": "ewstable",
+            "base": "",
+            "fields": [
+                {
+                    "name": "category",
+                    "type": "uint64"
+                },
+                {
+                    "name": "bycategory",
+                    "type": "float64"
+                }
+            ]
+        },
+        {
+            "name": "iteration",
+            "base": "",
+            "fields": [
+                {
+                    "name": "iteration_number",
+                    "type": "uint32"
+                },
+                {
+                    "name": "start",
+                    "type": "time_point"
+                },
+                {
+                    "name": "end",
+                    "type": "time_point"
+                },
+                {
+                    "name": "claim_amount",
+                    "type": "uint16"
+                },
+                {
+                    "name": "tokens_required",
+                    "type": "uint16"
+                }
+            ]
+        },
+        {
+            "name": "nft_struct",
+            "base": "",
+            "fields": [
+                {
+                    "name": "nft_key",
+                    "type": "uint64"
+                },
+                {
+                    "name": "eosaccount",
+                    "type": "name"
+                },
+                {
+                    "name": "roi_target_cap",
+                    "type": "uint8"
+                },
+                {
+                    "name": "nft_percentage",
+                    "type": "float64"
+                },
+                {
+                    "name": "mint_date",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "locked",
+                    "type": "bool"
+                },
+                {
+                    "name": "threshold",
+                    "type": "asset"
+                },
+                {
+                    "name": "rates_left",
+                    "type": "uint32"
+                },
+                {
+                    "name": "accrued",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "proposal_struct",
+            "base": "",
+            "fields": [
+                {
+                    "name": "key",
+                    "type": "uint64"
+                },
+                {
+                    "name": "eosaccount",
+                    "type": "name"
+                },
+                {
+                    "name": "roi_target_cap",
+                    "type": "uint8"
+                },
+                {
+                    "name": "proposal_percentage",
+                    "type": "float64"
+                },
+                {
+                    "name": "locked",
+                    "type": "bool"
+                },
+                {
+                    "name": "expires_at",
+                    "type": "uint32"
+                },
+                {
+                    "name": "threshold",
+                    "type": "asset"
+                },
+                {
+                    "name": "rates_left",
+                    "type": "uint32"
+                },
+                {
+                    "name": "accrued",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "proposalnew",
+            "base": "",
+            "fields": [
+                {
+                    "name": "proposername",
+                    "type": "name"
+                },
+                {
+                    "name": "eosaccount",
+                    "type": "name"
+                },
+                {
+                    "name": "roi_target_cap",
+                    "type": "uint8"
+                },
+                {
+                    "name": "period_percentage",
+                    "type": "float64"
+                },
+                {
+                    "name": "threshold",
+                    "type": "asset"
+                },
+                {
+                    "name": "rates_left",
+                    "type": "uint32"
+                },
+                {
+                    "name": "locked",
+                    "type": "bool"
+                }
+            ]
+        },
+        {
+            "name": "proposalvote",
+            "base": "",
+            "fields": [
+                {
+                    "name": "votername",
+                    "type": "name"
+                },
+                {
+                    "name": "vote",
+                    "type": "uint8"
+                }
+            ]
+        },
+        {
+            "name": "propreset",
+            "base": "",
+            "fields": [
+                {
+                    "name": "proposername",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "query",
+            "base": "",
+            "fields": [
+                {
+                    "name": "eosaccount",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "recive_struct",
+            "base": "",
+            "fields": [
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "to_receive",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "regchown",
+            "base": "",
+            "fields": [
+                {
+                    "name": "userfrom",
+                    "type": "name"
+                },
+                {
+                    "name": "userto",
+                    "type": "name"
+                },
+                {
+                    "name": "nft_id",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "remove",
+            "base": "",
+            "fields": [
+                {
+                    "name": "role_acct",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "removewhite",
+            "base": "",
+            "fields": []
+        },
+        {
+            "name": "status_messages",
+            "base": "",
+            "fields": [
+                {
+                    "name": "key",
+                    "type": "uint64"
+                },
+                {
+                    "name": "errorno",
+                    "type": "uint8"
+                }
+            ]
+        },
+        {
+            "name": "unlocknft",
+            "base": "",
+            "fields": [
+                {
+                    "name": "nft_id",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "upsert",
+            "base": "",
+            "fields": [
+                {
+                    "name": "role_type",
+                    "type": "uint8"
+                },
+                {
+                    "name": "role_acct",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "version",
+            "base": "",
+            "fields": []
+        },
+        {
+            "name": "whitelist_struct",
+            "base": "",
+            "fields": [
+                {
+                    "name": "idno",
+                    "type": "uint64"
+                },
+                {
+                    "name": "user",
+                    "type": "name"
+                },
+                {
+                    "name": "vote",
+                    "type": "uint8"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "dividcompute",
+            "type": "dividcompute",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "dryrun",
+            "type": "dryrun",
+            "ricardian_contract": "<h2>simulate dividend run for one iteration using percentages only</h2>\n\n**PARAMETERS:**\nNONE\n**PERMISSIONS**\nMust be used proposer permission.\n**INTENT:** The intent of [[dryrun]] is to run a whole process of dividend counting but using only percentage data taken from active NFTs.\nPercentage of eligible payments (inactive (non-paid) NFTs are not counted) is summarized separately for each user. If user has more then one NFT the percentage of active NFTs will be sumarized. Locked users in cap 3 are counted as active as they will be active in the future.\nAlso percentage is summarized in a separate table for each category of payment e.g. Investors, Founders.\nIf total summary percentage of all payments will be above 90% the entering of a new proposal will be not allowed.\nAlso note that more information may be extracted using front end.  \n\n**TERM:**\n\ndividendhand( uint64_t periodpoint, asset profit )"
+        },
+        {
+            "name": "proposalnew",
+            "type": "proposalnew",
+            "ricardian_contract": "<h2>create new proposal</h2>\n\n**PARAMETERS:**\n* __proposer__ has right to initiate new proposal\n* __eosaccount__ the dividend target account for founder or investor\n* __roi_target_cap__ Value 1,2 or3. Itis 1-(I)teration, 2-(H)orizontal, or 3 for (V)ertical cap.\n(* __expires_at__ proposal expiration time (default one hour). After that time proposal is cancelled and cannot be voted. Actually, used internally).\n* __weekly_percentage__ of dividend transrerred into __eosaccount__ this week round\n* __threshold__ different meaning depend on \"roi_target_cap\"=1 countdown counter of rounds to pay,  if 3 - the highest amount of dividend to pay this week\n* __accrued__  total sum of dividends up-to-date - used only when roi_target_cap=2; if accrued>=threshold -> stop-pay\n* __locked__ temporary lock for new founders (can be used only once)\nVersion 3 Feb\n**INTENT:** The intent of [[proposalnew ]] is to create a new proposal introducing a new investor or founder to the register - When proposal is accepted the investor of founder receives NFT stored as register entry (NFT-Non Fungible Token) allowing to receive weekly pre-defined profit-based dividend.  The notification of a new proposal should be emailed to both voters by the frontend. The proposer account is priviledged (VIP) account.\n\n**TERM:** The proposal must be accepted by pre-defined voters not later than one hour from its issue, otherwise will be destroyed."
+        },
+        {
+            "name": "proposalvote",
+            "type": "proposalvote",
+            "ricardian_contract": "<h2>vote on proposal</h2>\n\n**PARAMETERS:**\n* __voter__ is accountname (must be whitelisted) of a voter for identification\n* __vote__ is a value of a vote ( 0-didn't voted yet or ignored, 1-no, 2-yes).\n\n**INTENT:** The intent of proposalvote is to accept (or not) the issued proposal. If proposal will be accepted by both pre-defined priviledged voters, it will be copied to investor/founder register and NFT will be minted. From this moment investor/voter will be eligible to receive policy based share from dividends.\nOtherwise, proposal not accepted by voters, will be destroyed.\n\n**TERM:**  Voters have one hour (counted from proposal issue) to take the decision on proposal acceptance."
+        },
+        {
+            "name": "propreset",
+            "type": "propreset",
+            "ricardian_contract": "<h2>cancel proposal before expiration</h2>\n\n**PARAMETERS:**\n*NONE\n\n**INTENT:** The intent of {{ proposalclr }} is to allow the proposer cancelling the pending proposal before its one hour normal expiration.\n\n**TERM:** The voters will be notified on earlier proposal cancellation. Note: Accepted proposal becomes new NFT in the register and not exists anymore as a proposal."
+        },
+        {
+            "name": "query",
+            "type": "query",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "regchown",
+            "type": "regchown",
+            "ricardian_contract": "**PARAMETERS:**\n\n* __owner__ current NFT owner\n* __new_owner__ new NFT owner\n* __nftid__ NFT_id must be received from the front-end\n\n**INTENT:** The intent of regchown is to allow changes in NFT ownership (e.g. only by inheritance or gift).\n\n**TERM:**  TBA"
+        },
+        {
+            "name": "remove",
+            "type": "remove",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "removewhite",
+            "type": "removewhite",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "unlocknft",
+            "type": "unlocknft",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "upsert",
+            "type": "upsert",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "version",
+            "type": "version",
+            "ricardian_contract": "**PARAMETERS:**\n\nNONE\n\n**INTENT:** Display contract version.\n\n**TERM:**  TBA"
+        }
+    ],
+    "tables": [
+        {
+            "name": "deposits",
+            "type": "deposit",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "dryruns",
+            "type": "dryrun_struct",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "ewstables",
+            "type": "ewstable",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "iterations",
+            "type": "iteration",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "messages",
+            "type": "status_messages",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "nfts",
+            "type": "nft_struct",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "proposals",
+            "type": "proposal_struct",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "recives",
+            "type": "recive_struct",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "whitelist",
+            "type": "whitelist_struct",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [
+        {
+            "id": "ENTIRE AGREEMENT",
+            "body": "This contract contains the entire agreement of the parties, for all described actions, and there are no other promises or conditions in any other agreement whether oral or written concerning the subject matter of this Contract. This contract supersedes any prior written or oral agreements between the parties. - not implemented - to consider"
+        },
+        {
+            "id": "BINDING CONSTITUTION",
+            "body": "All the the action descibed in this contract are subject to the consitution as held at vvv . This includes, but is not limited to membership terms and condiutions, dispute resolution and severability. Not implemented - to consider."
+        },
+        {
+            "id": "OVERALL FUNCTION",
+            "body": "not implemented"
+        }
+    ],
+    "variants": []
+}

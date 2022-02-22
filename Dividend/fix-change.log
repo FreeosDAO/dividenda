@@ -9,9 +9,9 @@ Changes after last audit:
  
 andy@andy-front:~/devel-allocate/dividenda/Dividend/depl_freeosdivide/dividenda$ 
 
-d5e52c4dceb0ec28a66fd09cbf248a1905f69b24f48bae92d21ee09cc77e4afa  dividenda.abi
-c645ecbd1539acd1effbc8ad765b91f1f79dc50f6fcef8bccf27bcd98e98869b  dividenda.wasm
-
 Compiled by eosio.cdt_1.7
 
+ sha256sum dividenda.abi
+d5e52c4dceb0ec28a66fd09cbf248a1905f69b24f48bae92d21ee09cc77e4afa  dividenda.abi
+df2217a4bcc65251485368d54a0c04569aa49e640b3324e80263758ae8a2ed1f  dividenda.wasm
 
