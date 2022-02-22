@@ -1,0 +1,17 @@
+
+
+Changes after last audit:
+
+454 - 456 corrected precision issues when counting individual dividend
+568 - 570 quantity information added to dividend transaction memo.
+750 - 758 clean partial voting results when proposal cancelled. (So called 2nd voter issue)
+ 22 Feb 2022 3:34 pm by AZ
+ 
+andy@andy-front:~/devel-allocate/dividenda/Dividend/depl_freeosdivide/dividenda$ sha256sum dividenda.wasm
+
+24e296e7331c88f1b72c96eeacb57b3896a59cf7c8771b7f8053ad4633d006c9  dividenda.wasm
+
+andy@andy-front:~/devel-allocate/dividenda/Dividend/depl_freeosdivide/dividenda$ sha256sum dividenda.abi
+
+a3c709e9c622a19ccabc9599866973cae6d15c3e08f54de380355f2caa53c05a  dividenda.abi
+

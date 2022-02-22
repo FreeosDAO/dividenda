@@ -451,8 +451,9 @@ void dividenda::proposalvote(  const name votername,
 
           // Count how much to pay for this NFT to the current user 
       // in POINT tokens:
-      asset to_receive = asset(0,symbol("POINT",4) ); 
-      to_receive = ( profit * (nft_percentage * 100)) / 10000; 
+      //old: // asset to_receive = asset(0,symbol("POINT",4) );          // old
+      //old: // to_receive = ( profit * (nft_percentage * 100)) / 10000; // old
+      asset to_receive = asset( (profit.amount * nft_percentage) / 100.0, profit.symbol); // new
 
       switch( cap_type ) 
       {
@@ -564,7 +565,9 @@ void dividenda::proposalvote(  const name votername,
         name user = idx->user;
         asset quantity = asset(0,symbol("POINT",4) ); 
         quantity = idx->to_receive; 
-        std::string memo = std::string("period: ")+std::to_string( iter_point )+std::string(" dividend.");
+        // std::string memo = std::string("period: ")+std::to_string( iter_point )+std::string(" dividend."); // OLD
+        std::string memo = std::string("Your week ")+std::to_string( iter_point )+std::string(" share of ")
+        + std::to_string( quantity.amount ) + std::string(" POINT."); // NEW
         if(quantity.amount>0){
           action dtransfer = action(
             permission_level{get_self(),"active"_n},
@@ -743,7 +746,16 @@ void dividenda::propreset( name proposername ) {
             p.accrued             = asset(0,symbol("POINT",4) ); 
             p.expires_at          = now();
            });
-  }           
+  }   
+  // erase remaining voting results!    NEW 
+  whitelist_index white_list(get_self(), get_self().value); // NEW
+  for( auto iter=white_list.begin(); iter!=white_list.end(); iter++ )  // NEW
+    {                                                                  // NEW ...
+      white_list.modify(iter, get_self(), [&]( auto& row )
+      {
+        row.vote = 0;
+      }); 
+    } // ... end of NEW    
 } 
 //
 //---
