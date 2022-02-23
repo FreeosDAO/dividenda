@@ -567,7 +567,7 @@ void dividenda::proposalvote(  const name votername,
         quantity = idx->to_receive; 
         // std::string memo = std::string("period: ")+std::to_string( iter_point )+std::string(" dividend."); // OLD
         std::string memo = std::string("Your week ")+std::to_string( iter_point )+std::string(" share of ")
-        + std::to_string( quantity.amount ) + std::string(" POINT."); // NEW
+        + profit.to_string() + std::string(" POINT."); // NEW
         if(quantity.amount>0){
           action dtransfer = action(
             permission_level{get_self(),"active"_n},
