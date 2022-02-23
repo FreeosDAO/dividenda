@@ -636,7 +636,7 @@ void dividenda::dividcompute()
 void dividenda::replay()
 {  
   deposit_index deposit_tbl(tokencontra, tokencontra.value);           //external deposit table 
-  
+
   // read current iteration externally 
   uint64_t current_iter;                  // The row containing this iteration number cannot be processed! 
   current_iter = getclaimiteration();     // read externally  
@@ -644,13 +644,15 @@ void dividenda::replay()
    
   // Process external deposit table from the beginning to the end sequentially. Exclude current iteration.  
     auto deposit_itr  = deposit_tbl.begin();
-  while (deposit_itr != deposit_tbl.end()) {        
+  while (deposit_itr != deposit_tbl.end()) {
+
     // Each item from the deposit table is examined and eventually processed (order has no meaning).
                                           // I need only to know the amount to divide taken from the row of the deposit table. 
     uint64_t iterpoint = deposit_itr->iteration;   // iteration number of the row under processing. 
     
     if( iterpoint!=current_iter ){  // Omit operation for this time only - row under processing is the same like current 
       asset itervalue = deposit_itr->accrued; // asset value of the row under processing. 
+
       dividendhand( iterpoint, itervalue );   // Process single iteration dividend. 
       // action to remove a deposit row from the deposit table
       action diverase = action(

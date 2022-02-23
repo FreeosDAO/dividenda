@@ -1,5 +1,5 @@
 // current version string:
-const std::string VERSION = "Version = 1.42 Launch"; 
+const std::string VERSION = "1.43"; 
 
 //"13 July, 2021; Launch2";
 
@@ -35,7 +35,7 @@ enum roi_target_cap { ITERATION=1, HORIZONTAL=2, VERTICAL=3 };
 const std::string freeos_acct       = "freeos5";  // freeosclaim
 const std::string freeosconfig_acct = "freeoscfg5"; // Tom's configuration contract 
 
-const name tokencontra   = "freeostoken5"_n;          ///< Token contract (for inline transfers)    
+const name tokencontra   = "freeos5"_n;          ///< Token contract (for inline transfers)    
 const name daoaccount    = "freeosdaodao"_n;     ///< Organizational target DAO account
 const name this_account  = "freeosdiv5"_n;  
 
