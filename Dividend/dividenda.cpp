@@ -451,9 +451,9 @@ void dividenda::proposalvote(  const name votername,
 
           // Count how much to pay for this NFT to the current user 
       // in POINT tokens:
-      //old: // asset to_receive = asset(0,symbol("POINT",4) );          // old
-      //old: // to_receive = ( profit * (nft_percentage * 100)) / 10000; // old
-      asset to_receive = asset( (profit.amount * nft_percentage) / 100.0, profit.symbol); // new
+      //old: // asset to_receive = asset(0,symbol("POINT",4) );          // v140
+      //old: // to_receive = ( profit * (nft_percentage * 100)) / 10000; // v140
+      asset to_receive = asset( (profit.amount * nft_percentage) / 100.0, profit.symbol); // v1.43
 
       switch( cap_type ) 
       {
@@ -565,9 +565,9 @@ void dividenda::proposalvote(  const name votername,
         name user = idx->user;
         asset quantity = asset(0,symbol("POINT",4) ); 
         quantity = idx->to_receive; 
-        // std::string memo = std::string("period: ")+std::to_string( iter_point )+std::string(" dividend."); // OLD
+        // std::string memo = std::string("period: ")+std::to_string( iter_point )+std::string(" dividend."); // v140
         std::string memo = std::string("Your week ")+std::to_string( iter_point )+std::string(" share of ")
-        + profit.to_string() + std::string(" POINT."); // NEW
+        + profit.to_string(); // v1.43
         if(quantity.amount>0){
           action dtransfer = action(
             permission_level{get_self(),"active"_n},
@@ -749,15 +749,15 @@ void dividenda::propreset( name proposername ) {
             p.expires_at          = now();
            });
   }   
-  // erase remaining voting results!    NEW 
-  whitelist_index white_list(get_self(), get_self().value); // NEW
-  for( auto iter=white_list.begin(); iter!=white_list.end(); iter++ )  // NEW
-    {                                                                  // NEW ...
+  // erase remaining voting results!    v1.43
+  whitelist_index white_list(get_self(), get_self().value);
+  for( auto iter=white_list.begin(); iter!=white_list.end(); iter++ )
+    {
       white_list.modify(iter, get_self(), [&]( auto& row )
       {
         row.vote = 0;
       }); 
-    } // ... end of NEW    
+    } // ... end of 1.43   
 } 
 //
 //---
