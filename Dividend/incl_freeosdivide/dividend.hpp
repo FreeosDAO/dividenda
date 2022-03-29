@@ -1,5 +1,5 @@
 // current version string:
-const std::string VERSION = "Version = 1.42 Launch"; 
+const std::string VERSION = "1.44"; 
 
 //"13 July, 2021; Launch2";
 
