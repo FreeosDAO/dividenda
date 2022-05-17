@@ -193,6 +193,18 @@ CONTRACT dividenda : public contract {
     */
     [[eosio::action]]
     void dividcompute();
+
+
+    /**
+    * cron action
+    * 
+    * @details Provides an interface to the Proton CRON service. The action invokes dividcompute.
+    *
+    * @brief 
+    *
+    */
+    [[eosio::action]]
+    void cron();
           
     
                          

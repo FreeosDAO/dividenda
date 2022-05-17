@@ -116,6 +116,17 @@ void dividenda::proposalnew(
   
   clearfront(); // Remove past warnings before any processing
 
+  // erase voting results!    v1.45
+  whitelist_index white_list(get_self(), get_self().value);
+  for( auto iter=white_list.begin(); iter!=white_list.end(); iter++ )
+    {
+      white_list.modify(iter, get_self(), [&]( auto& row )
+      {
+        row.vote = 0;
+      }); 
+    }
+  // end of v1.45 change
+
   // Entry parameters verification:
   check( (roi_target_cap==ITERATION)||(roi_target_cap==HORIZONTAL)||(roi_target_cap==VERTICAL), "Wrong value of roi_target_cap!");  
   check( (proposal_percentage >0 && proposal_percentage <100),  "The proposal_percentage out of range!" );
@@ -621,6 +632,20 @@ void dividenda::dividcompute()
 {
   replay(); 
 }
+
+  /*
+   +-----------------------------------
+   +  cron -  
+   +-----------------------------------
+             +
+             +  Enables dividcompute to be called by Proton CRON service   
+             */
+[[eosio::action]]
+void dividenda::cron()
+{
+  dividcompute(); 
+}
+
 //
 //---
 
