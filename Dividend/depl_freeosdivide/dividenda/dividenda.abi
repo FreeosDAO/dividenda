@@ -92,6 +92,20 @@
             ]
         },
         {
+            "name": "maintain",
+            "base": "",
+            "fields": [
+                {
+                    "name": "action",
+                    "type": "string"
+                },
+                {
+                    "name": "user",
+                    "type": "name"
+                }
+            ]
+        },
+        {
             "name": "nft_struct",
             "base": "",
             "fields": [
@@ -367,6 +381,11 @@
             "name": "dryrun",
             "type": "dryrun",
             "ricardian_contract": "<h2>simulate dividend run for one iteration using percentages only</h2>\n\n**PARAMETERS:**\nNONE\n**PERMISSIONS**\nMust be used proposer permission.\n**INTENT:** The intent of [[dryrun]] is to run a whole process of dividend counting but using only percentage data taken from active NFTs.\nPercentage of eligible payments (inactive (non-paid) NFTs are not counted) is summarized separately for each user. If user has more then one NFT the percentage of active NFTs will be sumarized. Locked users in cap 3 are counted as active as they will be active in the future.\nAlso percentage is summarized in a separate table for each category of payment e.g. Investors, Founders.\nIf total summary percentage of all payments will be above 90% the entering of a new proposal will be not allowed.\nAlso note that more information may be extracted using front end.  \n\n**TERM:**\n\ndividendhand( uint64_t periodpoint, asset profit )"
+        },
+        {
+            "name": "maintain",
+            "type": "maintain",
+            "ricardian_contract": ""
         },
         {
             "name": "proposalnew",

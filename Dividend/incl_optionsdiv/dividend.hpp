@@ -1,7 +1,3 @@
-// current version string:
-const std::string VERSION = "Version = 140 QA2"; 
-
-//"Ver 140, 21th May, 2021; QA2";
 
 constexpr static uint64_t EXPIRATION_PERIOD = 60 * 60;  ///< default time limit for NFT proposal voting - one hour in seconds. 
 // const static double ACC_MARGIN =  0.0;  // margin - % of 'dust' left on freeosdivide account for freeosdaodao transaction. 

@@ -1,7 +1,5 @@
 #include "dividenda.hpp" 
 
-// "Ver 140, 21th May, 2021";
-
   /*
    +-----------------------------------
    +  upsert -  
@@ -109,8 +107,7 @@ void dividenda::proposalnew(
         const bool      locked               //!< lock dividends for selected new founders. Note: When unlock cannot be locked again.
     )
 {     
-
-	//Verify proposer against white_list but not against other authorization.
+  //Verify proposer against white_list but not against other authorization.
   require_auth(proposername);
 	check( (auth_vip(proposername)==PROPOSER), "proposername not authorized by whitelist!" );
   
@@ -837,6 +834,89 @@ void dividenda::unlocknft( uint64_t nft_key ){
             p.locked = false;  
   }); }
   else notify_front( NON_FOUNDER ); // notify frontend: 'action ignored: trying to unlock non-founder account'. 
+}
+
+// MAINTAIN
+[[eosio::action]]
+void dividenda::maintain( string action, name user ){
+
+  require_auth(get_self());
+
+  /*
+  if (action == "copy nfts") {
+    // nfts table
+    nft_table nft_register( get_self(), get_self().value );
+    auto nft_iterator = nft_register.begin();
+
+    // copynfts table
+    copynft_table copynft_register( get_self(), get_self().value );
+
+    while (nft_iterator != nft_register.end()) {
+      copynft_register.emplace(get_self(), [&]( auto& r ){
+                r.nft_key                 = nft_iterator->nft_key; 
+                r.eosaccount              = nft_iterator->eosaccount; 
+                r.roi_target_cap          = nft_iterator->roi_target_cap;
+                r.nft_percentage          = nft_iterator->nft_percentage;
+                r.mint_date               = nft_iterator->mint_date;  
+                r.locked                  = nft_iterator->locked;
+                r.accrued                 = nft_iterator->accrued;  
+                r.threshold               = nft_iterator->threshold;
+                r.rates_left              = nft_iterator->rates_left;     
+              });
+
+      nft_iterator++;
+    }
+  } // end of "copy nfts"
+
+
+  if (action == "delete nfts") {
+    // nfts table
+    nft_table nft_register( get_self(), get_self().value );
+    auto nft_iterator = nft_register.begin();
+
+    while (nft_iterator != nft_register.end()) {
+      nft_iterator = nft_register.erase(nft_iterator);
+    }
+  } // end of "delete nfts"
+
+
+    if (action == "restore nfts") {
+    // copynfts table
+    copynft_table copynft_register( get_self(), get_self().value );
+    auto copynft_iterator = copynft_register.begin();
+
+    // nfts table
+    nft_table nft_register( get_self(), get_self().value );
+
+    while (copynft_iterator != copynft_register.end()) {
+      nft_register.emplace(get_self(), [&]( auto& r ){
+                r.nft_key                 = copynft_iterator->nft_key; 
+                r.eosaccount              = copynft_iterator->eosaccount; 
+                r.roi_target_cap          = copynft_iterator->roi_target_cap;
+                r.nft_percentage          = copynft_iterator->nft_percentage;
+                r.mint_date               = copynft_iterator->mint_date;  
+                r.locked                  = copynft_iterator->locked;
+                r.accrued                 = copynft_iterator->accrued;  
+                r.threshold               = copynft_iterator->threshold;
+                r.rates_left              = copynft_iterator->rates_left;     
+              });
+
+      copynft_iterator++;
+    }
+  } // end of "restore nfts"
+  
+
+  if (action == "delete copynfts") {
+    // copynfts table
+    copynft_table copynft_register( get_self(), get_self().value );
+    auto copynft_iterator = copynft_register.begin();
+
+    while (copynft_iterator != copynft_register.end()) {
+      copynft_iterator = copynft_register.erase(copynft_iterator);
+    }
+  } // end of "delete copynfts"
+
+  */
 }
 //
 //---

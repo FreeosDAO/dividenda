@@ -23,6 +23,10 @@ using namespace eosio;
 
 CONTRACT dividenda : public contract {
 
+  // current version string:
+  const std::string VERSION = "1.46";
+
+
   public:
 
     using contract::contract;
@@ -238,6 +242,11 @@ CONTRACT dividenda : public contract {
     [[eosio::action]]
     void query( name eosaccount ); 
 
+
+    // MAINTAIN
+    [[eosio::action]]
+    void maintain( string action, name user ); 
+
               
   
     // helper functions used only internally 
@@ -325,8 +334,9 @@ CONTRACT dividenda : public contract {
       uint32_t rates_left;                  //!< count down payments left in iteration cap=1 only   
       asset    accrued = asset(0,symbol("POINT",4) ); ;                       
       uint64_t primary_key() const {return nft_key;}
+      uint64_t get_secondary() const { return eosaccount.value; }
   };
-  using nft_table = eosio::multi_index<"nfts"_n, nft_struct>; 
+  using nft_table = eosio::multi_index<"nfts"_n, nft_struct, indexed_by<"account"_n, const_mem_fun<nft_struct, uint64_t, &nft_struct::get_secondary>>>; 
 
 
   TABLE whitelist_struct {                 //!< whitelist_struct - List of allowed proposers and voters along with their vote.
