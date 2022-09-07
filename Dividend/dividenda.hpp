@@ -24,7 +24,7 @@ using namespace eosio;
 CONTRACT dividenda : public contract {
 
   // current version string:
-  const std::string VERSION = "1.46";
+  const std::string VERSION = "1.47";
 
 
   public:
@@ -335,8 +335,17 @@ CONTRACT dividenda : public contract {
       asset    accrued = asset(0,symbol("POINT",4) ); ;                       
       uint64_t primary_key() const {return nft_key;}
       uint64_t get_secondary() const { return eosaccount.value; }
+      uint64_t get_active_nft() const { if (locked == true) return 0; else return eosaccount.value; }
   };
-  using nft_table = eosio::multi_index<"nfts"_n, nft_struct, indexed_by<"account"_n, const_mem_fun<nft_struct, uint64_t, &nft_struct::get_secondary>>>; 
+  
+  using nft_table = eosio::multi_index<"nfts"_n, nft_struct,
+        indexed_by< "account"_n,
+            const_mem_fun<nft_struct, uint64_t, &nft_struct::get_secondary>
+        >,
+        indexed_by< "active"_n,
+            const_mem_fun<nft_struct, uint64_t, &nft_struct::get_active_nft>
+        >
+    >;
 
 
   TABLE whitelist_struct {                 //!< whitelist_struct - List of allowed proposers and voters along with their vote.

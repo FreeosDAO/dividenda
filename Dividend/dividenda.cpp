@@ -106,7 +106,7 @@ void dividenda::proposalnew(
         const uint32_t  rates_left,          // number of dividend rates which cause pay-stop (roi_target_cap=1)
         const bool      locked               //!< lock dividends for selected new founders. Note: When unlock cannot be locked again.
     )
-{     
+{
   //Verify proposer against white_list but not against other authorization.
   require_auth(proposername);
 	check( (auth_vip(proposername)==PROPOSER), "proposername not authorized by whitelist!" );
@@ -915,8 +915,8 @@ void dividenda::maintain( string action, name user ){
       copynft_iterator = copynft_register.erase(copynft_iterator);
     }
   } // end of "delete copynfts"
-
   */
+ 
 }
 //
 //---
